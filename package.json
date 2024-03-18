@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)",
-  "main": "index.js",
+  "main": "gendiff.js",
   "type": "module",
   "scripts": {
     "test": "npx jest"
@@ -15,6 +15,7 @@
     "eslint-plugin-import": "^2.29.1"
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "fs": "^0.0.1-security"
   }
 }
