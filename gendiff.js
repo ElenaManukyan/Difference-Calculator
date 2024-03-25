@@ -9,20 +9,13 @@ import parseFile from './parseFile.js';
 
 const genDiff = (file1, file2) => {
   const content1 = _.sortBy(Object.entries(file1));
-  // console.log(`content1 = ${JSON.stringify(content1)}`);
   const content2 = _.sortBy(Object.entries(file2));
-  // console.log(`content2 = ${JSON.stringify(content2)}`);
   const keys1 = _.sortBy(Object.keys(file1));
-  // console.log(`keys1 = ${JSON.stringify(keys1)}`);
   const keys2 = _.sortBy(Object.keys(file2));
-  // console.log(`keys2 = ${JSON.stringify(keys2)}`);
   const values2 = Object.values(file2);
-  // console.log(`values2 = ${JSON.stringify(values2)}`);
   const result = {};
-
   for (let i = 0; i < content1.length; i += 1) {
     const [key1, val1] = content1[i];
-    // console.log(`typeof key1 = ${typeof key1}`);
     if (keys2.includes(key1)) {
       const indexOfKey2 = keys2.indexOf(key1);
       if (values2.includes(val1)) {
@@ -36,7 +29,6 @@ const genDiff = (file1, file2) => {
       result[`- ${key1}`] = val1;
     }
   }
-
   for (let j = 0; j < content2.length; j += 1) {
     const [key2, val2] = content2[j];
     if (!keys1.includes(key2)) {
@@ -50,13 +42,10 @@ const parse = (filepath1, filepath2) => {
   const result = {};
   const path1 = path.resolve(process.cwd(), filepath1);
   const path2 = path.resolve(process.cwd(), filepath2);
-  // console.log(`path1 = ${path1}, path2 = ${path2}`);
   const fileContent1 = parseFile(path1);
-  // console.log(typeof fileContent1);
   result.file1 = fileContent1;
   const fileContent2 = parseFile(path2);
   result.file2 = fileContent2;
-  // console.log(`text1 = ${JSON.stringify(text1)}, text2 = ${JSON.stringify(text2)}`);
   return console.log(JSON.parse(genDiff(result.file1, result.file2)));
 };
 
