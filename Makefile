@@ -2,4 +2,4 @@ lint:
 	npx eslint .
 
 make jest:
-	node --experimental-vm-modules node_modules/jest/bin/jest.js
+	NODE_OPTIONS=--experimental-vm-modules npx jest
