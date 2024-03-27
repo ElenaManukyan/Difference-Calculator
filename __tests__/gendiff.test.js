@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 // eslint-disable-next-line import/extensions
-import parseFile from '../src/gendiff.js';
+import parsePaths from '../src/gendiff.js';
 
 const answer = {
   '- follow': false,
@@ -11,8 +11,6 @@ const answer = {
   '+ verbose': true,
 };
 test('parseFile', () => {
-  expect(parseFile('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
+  expect(parsePaths('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
 });
-test('parseFile', () => {
-  expect(parseFile('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
-});
+  //__fixtures__/file1.json __fixtures__/file2.json ;

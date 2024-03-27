@@ -1,6 +1,12 @@
 name: my-test
 # on – определяет события, которые запускают воркфлоу
 on: push
+
+env:
+  CI: true
+
+
+  
 jobs:
     build: # имя взято для примера
       runs-on: ubuntu-latest
