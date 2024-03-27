@@ -1,4 +1,4 @@
-name: hello-world
+name: my test
 # on – определяет события, которые запускают воркфлоу
 on: push
 jobs:
