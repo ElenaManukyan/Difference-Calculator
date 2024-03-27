@@ -47,7 +47,7 @@ const parsePaths = (filepath1, filepath2) => {
   result.file1 = fileContent1;
   const fileContent2 = parseFile(path2);
   result.file2 = fileContent2;
-  return console.log(JSON.parse(genDiff(result.file1, result.file2)));
+  return JSON.parse(genDiff(result.file1, result.file2));
 };
 
 program
@@ -60,4 +60,4 @@ program
   .action(parsePaths)
   .parse(process.argv);
 
-export default genDiff;
+export default parsePaths;

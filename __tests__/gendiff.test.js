@@ -1,6 +1,6 @@
-// import { test, expect } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 // eslint-disable-next-line import/extensions
-import genDiff from '../src/gendiff.js';
+import parseFile from '../src/gendiff.js';
 
 const answer = {
   '- follow': false,
@@ -10,9 +10,9 @@ const answer = {
   '+ timeout': 20,
   '+ verbose': true,
 };
-
-// eslint-disable-next-line no-undef
-test('genDiff', () => {
-  // eslint-disable-next-line no-undef
-  expect(genDiff('../__fixtures__/file1.json', '../__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
+test('parseFile', () => {
+  expect(parseFile('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
+});
+test('parseFile', () => {
+  expect(parseFile('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
 });
