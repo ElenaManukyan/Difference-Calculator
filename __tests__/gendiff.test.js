@@ -13,4 +13,4 @@ const answer = {
 test('parseFile', () => {
   expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
 });
-  //__fixtures__/file1.json __fixtures__/file2.json ;
+// __fixtures__/file1.json __fixtures__/file2.json ;
