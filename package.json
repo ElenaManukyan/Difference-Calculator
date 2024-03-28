@@ -2,8 +2,11 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
   "description": "[![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)",
-  "main": "src/gendiff.js",
+  "main": "src/genDiffMain.js",
   "author": "",
   "license": "ISC",
   "devDependencies": {

@@ -5,4 +5,4 @@ make jest:
 	NODE_OPTIONS=--experimental-vm-modules npx jest file1.json file2.json
 
 test:
-	npm run test jest:NODE_OPTIONS=--experimental-vm-modules
+	npm test
