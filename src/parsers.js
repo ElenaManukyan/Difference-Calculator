@@ -28,8 +28,8 @@ function parsePaths(filepath1, filepath2) {
   return result;
 }
 
-const file1 = './__fixtures__/file1.yml';
+/* const file1 = './__fixtures__/file1.yml';
 const file2 = './__fixtures__/file2.yml';
-console.log(JSON.parse(parsePaths(file1, file2)));
+console.log(JSON.parse(parsePaths(file1, file2))); */
 
 export default parsePaths;
