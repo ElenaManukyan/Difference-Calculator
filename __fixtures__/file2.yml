@@ -1,0 +1,5 @@
+timeout: !!int 20
+
+verbose: !!bool true
+  
+host: !!str hexlet.io

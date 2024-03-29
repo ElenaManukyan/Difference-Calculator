@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const parseFile = (filepath) => {
+const parseFileJSON = (filepath) => {
   const path = filepath;
   // console.log(`path = ${path}`);
   const text = fs.readFileSync(path, 'utf8');
@@ -8,4 +8,4 @@ const parseFile = (filepath) => {
   return JSON.parse(text);
 };
 
-export default parseFile;
+export default parseFileJSON;

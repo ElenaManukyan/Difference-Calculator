@@ -9,3 +9,6 @@ test-coverage:
 
 install:
 	npm ci
+
+test-yml:
+	node src/parsers.js

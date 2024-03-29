@@ -1,8 +1,9 @@
 import { expect, test } from '@jest/globals';
-// eslint-disable-next-line import/extensions
-import parsePaths from '../src/parsePaths.js';
+// eslint-disable-next-line import/no-unresolved
+import parsePaths from '../src/parsers.js';
+// import genDiffMain from '../src/genDiffMain.js';
 
-const answer = {
+const answerJSON = {
   '- follow': false,
   host: 'hexlet.io',
   '- proxy': '123.234.53.22',
@@ -10,7 +11,10 @@ const answer = {
   '+ timeout': 20,
   '+ verbose': true,
 };
-test('parseFile', () => {
-  expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(answer));
+
+test('parseFile .json format:', () => {
+  expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(answerJSON));
 });
-// __fixtures__/file1.json __fixtures__/file2.json ;
+test('parseFile .yml & .yaml formats:', () => {
+  expect(parsePaths('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toEqual(JSON.stringify(answerJSON));
+});
