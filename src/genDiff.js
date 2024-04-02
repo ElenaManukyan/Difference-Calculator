@@ -63,7 +63,7 @@ const fileContent2 = parseFileJSON(path2);
 parse.file2 = fileContent2;
 // result = JSON.stringify(JSON.parse(genDiff(parse.file1, parse.file2)));
 
-const stylish = (difference) => JSON.parse(JSON.stringify(difference, null, 2));
+const stylish = (difference) => JSON.parse(difference, null, 2);
 
 console.log(stylish(genDiff(parse.file1, parse.file2)));
 
