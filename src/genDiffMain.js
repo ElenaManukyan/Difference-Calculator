@@ -9,5 +9,5 @@ program
   .arguments('<filepath1>')
   .arguments('<filepath2>')
   .option('-f, --format [type]', 'output format')
-  .action(parsePaths())
+  .action((file1, file2) => console.log(parsePaths(file1, file2)))
   .parse(process.argv);
