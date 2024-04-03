@@ -15,7 +15,7 @@ const genDiff = (file1, file2) => {
   for (let j = 0; j < content1.length; j += 1) {
     const [key] = content1[j];
     i = file1[key];
-    if ((typeof i) === 'object') {
+    if (typeof i === 'object') {
       const keysLocal = Object.keys(i); // ?
       for (let k = 0; k < keysLocal.length; k += 1) {
         const keyLocal = keysLocal[k];
@@ -37,7 +37,7 @@ const genDiff = (file1, file2) => {
   for (let j2 = 0; j2 < content2.length; j2 += 1) {
     const [key2, val2] = content2[j2];
     i2 = file2[key2];
-    if ((typeof i2) === 'object') {
+    if (typeof i2 === 'object') {
       const keysLocal2 = Object.keys(i2);
       for (let k2 = 0; k2 < keysLocal2.length; k2 += 1) {
         const keyLocal2 = keysLocal2[k2];
@@ -47,7 +47,7 @@ const genDiff = (file1, file2) => {
       }
     }
   }
-  return JSON.stringify(result);
+  return result; // Возвращается объект (было JSON.stringify())
 };
 
 // let result = {};
@@ -63,7 +63,29 @@ const fileContent2 = parseFileJSON(path2);
 parse.file2 = fileContent2;
 // result = JSON.stringify(JSON.parse(genDiff(parse.file1, parse.file2)));
 
-const stylish = (difference) => JSON.parse(difference);
+let level = 1;
+const stylish = (difference) => {
+  let keyDiff;
+  const formattedResult = {};
+  const keysOfDifference = Object.keys(difference);
+  for (let k = 0; k < keysOfDifference.length; k += 1) {
+    keyDiff = difference[keysOfDifference[k]];
+    // console.log(`keyDiff = ${JSON.stringify(keyDiff)}`);
+    // console.log(`keyDiff = ${JSON.stringify(keyDiff)}`);
+    if (typeof keyDiff === 'object' && keyDiff !== null) {
+      console.log(`level = ${level}`);
+      level += 1;
+      const keysLocals = Object.keys(keyDiff);
+      for (let keyLocal = 0; keyLocal < keysLocals.length; keyLocal += 1) {
+        if (keyDiff[keysLocals[keyLocal]] === 100500) {
+          return `${keysLocals[keyLocal]}: ${keyDiff[keysLocals[keyLocal]]}`;
+        }
+      }
+      stylish(keyDiff);
+    }
+  }
+  // level = 0;
+};
 
 console.log(stylish(genDiff(parse.file1, parse.file2)));
 
