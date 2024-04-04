@@ -63,30 +63,25 @@ const fileContent2 = parseFileJSON(path2);
 parse.file2 = fileContent2;
 // result = JSON.stringify(JSON.parse(genDiff(parse.file1, parse.file2)));
 
-let level = 1;
-const stylish = (difference) => {
-  let keyDiff;
-  const formattedResult = {};
-  const keysOfDifference = Object.keys(difference);
-  for (let k = 0; k < keysOfDifference.length; k += 1) {
-    keyDiff = difference[keysOfDifference[k]];
-    // console.log(`keyDiff = ${JSON.stringify(keyDiff)}`);
-    // console.log(`keyDiff = ${JSON.stringify(keyDiff)}`);
-    if (typeof keyDiff === 'object' && keyDiff !== null) {
-      console.log(`level = ${level}`);
-      level += 1;
-      const keysLocals = Object.keys(keyDiff);
-      for (let keyLocal = 0; keyLocal < keysLocals.length; keyLocal += 1) {
-        if (keyDiff[keysLocals[keyLocal]] === 100500) {
-          return `${keysLocals[keyLocal]}: ${keyDiff[keysLocals[keyLocal]]}`;
-        }
+const stylish = (obj, depth = 1) => {
+  let i;
+  let level = depth;
+  let keys;
+  if (obj !== null) {
+    keys = Object.keys(obj);
+    for (let j = 0; j < keys.length; j += 1) {
+      const key = keys[j];
+      i = obj[key];
+      if (typeof i === 'object') {
+        level += 1;
+        stylish(i);
       }
-      stylish(keyDiff);
     }
   }
-  // level = 0;
+  return level;
 };
 
-console.log(stylish(genDiff(parse.file1, parse.file2)));
+const genDiffResult = genDiff(parse.file1, parse.file2);
+console.log(JSON.stringify(genDiffResult, null, stylish(genDiffResult)));
 
 export { genDiff, stylish };
