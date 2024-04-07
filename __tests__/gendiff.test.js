@@ -1,11 +1,19 @@
+/* eslint-disable max-len */
+/* eslint-disable comma-dangle */
+/* eslint-disable indent */
 import { expect, test } from '@jest/globals';
-// eslint-disable-next-line import/no-unresolved
 import parsePaths from '../src/parsers.js';
-// import genDiffMain from '../src/genDiffMain.js';
+import { sortObject } from '../src/genDiff.js';
+import stylish from '../src/stylish.js';
+
+/* команды для запуска приложения вручную:
+node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
+*/
 
 const answerJSON = {
   '- follow': false,
-  host: 'hexlet.io',
+  '  host': 'hexlet.io',
   '- proxy': '123.234.53.22',
   '- timeout': 50,
   '+ timeout': 20,
@@ -15,57 +23,57 @@ const answerJSON = {
 const answerNestedJSON = {
   common: {
     '+ follow': false,
-    setting1: 'Value 1',
+    '  setting1': 'Value 1',
     '- setting2': 200,
     '- setting3': true,
     '+ setting3': null,
     '+ setting4': 'blah blah',
     '+ setting5': {
-      key5: 'value5',
-    },
-    setting6: {
-      doge: {
-        '- wow': '',
-        '+ wow': 'so much',
+          key5: 'value5'
       },
-      key: 'value',
-      '+ ops': 'vops',
-    },
+      setting6: {
+          doge: {
+            '- wow': '',
+            '+ wow': 'so much'
+          },
+        '  key': 'value',
+        '+ ops': 'vops'
+      }
   },
   group1: {
     '- baz': 'bas',
     '+ baz': 'bars',
-    foo: 'bar',
+    '  foo': 'bar',
     '- nest': {
-      key: 'value',
-    },
-    '+ nest': 'str',
-  },
-  '- group2': {
-    abc: 12345,
-    deep: {
-      id: 45,
-    },
-  },
-  '+ group3': {
-    deep: {
-      id: {
-        number: 45,
+          key: 'value'
       },
-    },
-    fee: 100500,
+    '+ nest': 'str'
   },
+'- group2': {
+      abc: 12345,
+      deep: {
+          id: 45
+      }
+  },
+'+ group3': {
+      deep: {
+          id: {
+              number: 45
+          }
+      },
+      fee: 100500
+  }
 };
 
-test('parseFile .json format:', () => {
-  expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(answerJSON));
+test('Make difference flat structures JSON', () => {
+  expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(sortObject(answerJSON), null, stylish(sortObject(answerJSON))));
 });
-test('parseFile .yml & .yaml formats:', () => {
-  expect(parsePaths('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toEqual(JSON.stringify(answerJSON));
+test('Make difference flat structures YAML', () => {
+  expect(parsePaths('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toEqual(JSON.stringify(sortObject(answerJSON), null, stylish(sortObject(answerJSON))));
 });
 test('Make difference nested structures JSON', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(JSON.stringify(answerNestedJSON));
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(JSON.stringify(sortObject(answerNestedJSON), null, stylish(sortObject(answerNestedJSON))));
 });
 test('Make difference nested structures YAML', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.yaml', './__fixtures__/file2_nested.yaml')).toEqual(JSON.stringify(answerNestedJSON));
+  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml')).toEqual(JSON.stringify(sortObject(answerNestedJSON), null, stylish(sortObject(answerNestedJSON))));
 });

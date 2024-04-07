@@ -1,5 +1,3 @@
-timeout: !!int 20
-
-verbose: !!bool true
-  
-host: !!str hexlet.io
+timeout: 20
+verbose: true
+host: "hexlet.io"
