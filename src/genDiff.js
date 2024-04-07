@@ -9,9 +9,7 @@ function genDiff(obj1, obj2) {
     const value2 = obj2[key];
     if (typeof value1 === 'object' && typeof value2 === 'object') {
       const nestedDiff = genDiff(value1, value2);
-      if (Object.keys(nestedDiff).length > 0) {
-        diff[key] = nestedDiff;
-      }
+      diff[key] = nestedDiff;
     } else if (value1 !== value2) {
       diff[`- ${key}`] = value1;
       diff[`+ ${key}`] = value2;
