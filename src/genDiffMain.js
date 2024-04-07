@@ -9,5 +9,9 @@ program
   .arguments('<filepath1>')
   .arguments('<filepath2>')
   .option('-f, --format [type]', 'output format', 'stylish.js')
-  .action((file1, file2) => console.log(parsePaths(file1, file2)))
+  .action((filepath1, filepath2, options) => {
+    if (options.type === 'plain') {
+      console.log(parsePaths(filepath1, filepath1, 'plain'));
+    }
+  })
   .parse(process.argv);

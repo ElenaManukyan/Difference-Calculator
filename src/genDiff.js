@@ -1,6 +1,6 @@
 // Сделай genDiff рекурсивной функцией для проверки
 // вложенных структур
-function genDiff(obj1, obj2) {
+function genDiff(obj1, obj2, formatName) {
   const diff = {};
   const keys1 = Object.keys(obj1);
   for (let keyIndex = 0; keyIndex < keys1.length; keyIndex += 1) {
@@ -8,7 +8,7 @@ function genDiff(obj1, obj2) {
     const value1 = obj1[key];
     const value2 = obj2[key];
     if (typeof value1 === 'object' && typeof value2 === 'object') {
-      const nestedDiff = genDiff(value1, value2);
+      const nestedDiff = genDiff(value1, value2, formatName);
       diff[key] = nestedDiff;
     } else if (value1 !== value2) {
       diff[`- ${key}`] = value1;
