@@ -4,7 +4,7 @@
 ![example workflow](https://github.com/ElenaManukyan/frontend-project-46/actions/workflows/gendiff.yml/badge.svg)
 <a href="https://codeclimate.com/github/ElenaManukyan/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/567e889cf3a5d076d28d/test_coverage" /></a>
 ## Demonstration:
-### JSON-files:
-<a href="https://asciinema.org/a/JS17DxcBTNjxnBwHe6sDmPEIM" target="_blank"><img src="https://asciinema.org/a/JS17DxcBTNjxnBwHe6sDmPEIM.svg" /></a>
-### YAML-files:
-[![asciicast](https://asciinema.org/a/AsPVvy0NdHYwat8rbFZagbrsJ.svg)](https://asciinema.org/a/AsPVvy0NdHYwat8rbFZagbrsJ)
+### Creating difference between 2 flat .json files:
+<a href="https://asciinema.org/a/651304" target="_blank"><img src="https://asciinema.org/a/651304.svg" /></a>
+### Creating difference between 2 flat .yml files:
+<a href="https://asciinema.org/a/651305" target="_blank"><img src="https://asciinema.org/a/651305.svg" /></a>
