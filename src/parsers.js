@@ -18,7 +18,6 @@ function parsePaths(filepath1, filepath2) {
     const fileContent2 = parseFileJSON(path2);
     parse.file2 = fileContent2;
     result = sortObject(genDiff(parse.file1, parse.file2));
-    // result = JSON.stringify(JSON.parse(sortObject(genDiff(parse.file1, parse.file2))));
   }
   if ((format1 === '.yml' && format2 === '.yml') || (format1 === '.yaml' && format2 === '.yaml')) {
     const fileContent1 = parseFileYAML(path1);
