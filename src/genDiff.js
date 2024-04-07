@@ -7,7 +7,6 @@ function genDiff(obj1, obj2) {
     const key = keys1[keyIndex];
     const value1 = obj1[key];
     const value2 = obj2[key];
-
     if (typeof value1 === 'object' && typeof value2 === 'object') {
       const nestedDiff = genDiff(value1, value2);
       if (Object.keys(nestedDiff).length > 0) {
@@ -20,7 +19,6 @@ function genDiff(obj1, obj2) {
       diff[`  ${key}`] = value1;
     }
   }
-
   const keys2 = Object.keys(obj2);
   for (let keyIndex = 0; keyIndex < keys2.length; keyIndex += 1) {
     const key2 = keys2[keyIndex];
@@ -29,7 +27,6 @@ function genDiff(obj1, obj2) {
       diff[`+ ${key2}`] = value2;
     }
   }
-
   return diff;
 }
 
@@ -50,7 +47,6 @@ function sortObject(obj) {
       }
       return 0; // Maybe do I need to delete it?
     });
-
     sortedKeys.forEach((key) => {
       if (typeof obj[key] === 'object') {
         sortedObject[key] = sortObject(obj[key]);
