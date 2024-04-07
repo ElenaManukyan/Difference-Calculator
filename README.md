@@ -8,3 +8,7 @@
 <a href="https://asciinema.org/a/651304" target="_blank"><img src="https://asciinema.org/a/651304.svg" /></a>
 ### Creating difference between 2 flat .yml files:
 <a href="https://asciinema.org/a/651305" target="_blank"><img src="https://asciinema.org/a/651305.svg" /></a>
+### Creating difference between 2 nested files .json:
+<a href="https://asciinema.org/a/651308" target="_blank"><img src="https://asciinema.org/a/651308.svg" /></a>
+### Creating difference between 2 nested files .yml:
+<a href="https://asciinema.org/a/651307" target="_blank"><img src="https://asciinema.org/a/651307.svg" /></a>
