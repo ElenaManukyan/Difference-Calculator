@@ -63,8 +63,7 @@ let diff = [];
 // const item = { key: '', type: '', value: '' };
 function genDiff(obj1, obj2, formatName) {
   // const diff = [];
-  const item = { key: '', type: '', value: '' };
-  
+  // const item = { key: '', type: '', value: '' };
   const keys1 = _.sortBy(Object.keys(obj1));
   // const keys2 = Object.keys(obj2);
   for (let keyIndex = 0; keyIndex < keys1.length; keyIndex += 1) {
@@ -72,43 +71,35 @@ function genDiff(obj1, obj2, formatName) {
     const value1 = obj1[key];
     const value2 = obj2[key];
     if (typeof value1 === 'object' && typeof value2 === 'object') {
-      // const nestedDiff = genDiff(value1, value2, formatName);
-      // diff = [];
-      item.key = key;
-      item.type = 'nested';
-      item.value = [item];
-      //diff = [];
-      // genDiff(value1, value2, formatName);
       const nestedDiff = genDiff(value1, value2, formatName);
-      // item.value = nestedDiff;
-      // diff.push(item);
-      // diff[key] = nestedDiff;
+      // diff = [];
+      diff.push({
+        key: key,
+        type: 'nested',
+        value: [{ nestedDiff }],
+      });
     } else if (value1 !== value2) {
-      item.key = key;
-      item.type = 'changed';
-      item.value = value1;
-      item.prevValue = value2;
+      diff.push({
+        key: key,
+        type: 'changed',
+        value: value1,
+        prevValue: value2,
+      });
       //diff.push(item);
       // diff[`- ${key}`] = value1;
       // diff[`+ ${key}`] = value2;
     } else if (value1 === value2) {
-      item.key = key;
-      item.type = 'unchanged';
-      item.value = value1;
+      diff.push({
+        key: key,
+        type: 'unchanged',
+        value: value1,
+      });
       // diff.push(item);
       // diff[`  ${key}`] = value1;
     }
   }
   
 
-/* else if (typeof value1 === 'object') {
-      item.key = key;
-      item.type = 'nested';
-      item.value = [].push(item);
-    } else if (typeof value2 === 'object') {
-      item.key = key;
-      item.type = 'nested';
-      item.value = [].push(item); */
 
   const keys2 = Object.keys(obj2);
   for (let keyIndex = 0; keyIndex < keys2.length; keyIndex += 1) {
@@ -116,20 +107,14 @@ function genDiff(obj1, obj2, formatName) {
     // const value1 = obj1[key];
     const value2 = obj2[key2];
     if (!(key2 in obj1)) {
-      /* if (typeof value2 === 'object') {
-      item.key = key2;
-      item.type = 'nested';
-      item.value = [genDiff(value1, value2, formatName)];
-      // diff.push(item);
-      // diff[`+ ${key2}`] = value2;
-    } else { */
-      item.key = key2;
-      item.type = 'added';
-      item.value = value2;
+      diff.push({
+        key: key2,
+        type: 'added',
+        value: value2,
+      });
   }
 }
-diff.push(item);
-  // console.log(item);
+
   return diff;
 }
 
