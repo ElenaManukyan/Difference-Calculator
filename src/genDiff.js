@@ -119,6 +119,7 @@ function genDiff(obj1, obj2, formatName) {
 }
 
 console.log(genDiff(object1, object2, 'stylish'));
+console.log(JSON.stringify(genDiff(object1, object2, 'stylish')));
 // console.log(JSON.stringify(genDiff(object1, object2, 'stylish'), null, stylish(genDiff(object1, object2, 'stylish'))));
 
 /* function genDiff(obj1, obj2, formatName) {
