@@ -114,7 +114,9 @@ function genDiff(obj1, obj2, formatName) {
       // diff.push(item);
       // diff[`  ${key}`] = value1;
     }
+    // diff.push(valueForPush);
   }
+  //diff.push(valueForPush);
 
   // const keys2 = _.sortBy(Object.keys(obj2));
   for (let keyIndex = 0; keyIndex < keys2.length; keyIndex += 1) {
