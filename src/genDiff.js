@@ -59,121 +59,69 @@ const object2 = {
   },
 };
 
-const diff = [];
-// const item = { key: '', type: '', value: '' };
+let valueForPush;
 function genDiff(obj1, obj2, formatName) {
-  let level = 0;
-  let valueForPush = {};
-  const keys1 = _.sortBy(Object.keys(obj1));
-  const keys2 = Object.keys(obj2);
-  for (let keyIndex = 0; keyIndex < keys1.length; keyIndex += 1) {
-    const key = keys1[keyIndex];
-    const value1 = obj1[key];
-    const value2 = obj2[key];
-    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      level += 1;
-      // console.log(`level = ${level}`);
-      const nestedDiff = genDiff(value1, value2, formatName);
-
-      // console.log(`nestedDiff = ${JSON.stringify(nestedDiff, null, 4)}`);
-      valueForPush = {
-        key,
-        type: 'nested',
-        value: JSON.stringify(nestedDiff.slice(-level)), // JSON.stringify(value1),
-      };
-
-      diff.push(valueForPush);
-    } else if (!keys2.includes(key)) {
-      level += 1;
-      valueForPush = {
-        key,
-        type: 'removed',
-        value: value1,
-      };
-      diff.push(valueForPush);
-    } else if (value1 !== value2) {
-      level += 1;
-      valueForPush = {
-        key,
-        type: 'changed',
-        value: value2,
-        prevValue: value1,
-      };
-      diff.push(valueForPush);
-      // diff.push(item);
-      // diff[`- ${key}`] = value1;
-      // diff[`+ ${key}`] = value2;
-    } else if (value1 === value2) {
-      level += 1;
-      valueForPush = {
-        key,
-        type: 'unchanged',
-        value: value1,
-      };
-      diff.push(valueForPush);
-      // diff.push(item);
-      // diff[`  ${key}`] = value1;
+  let diff = [];
+  if (_.isPlainObject(obj1) && _.isPlainObject(obj2)) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    const unionKeys = _.union(keys1, keys2);
+    const differenceKeys1 = _.difference(keys1, keys2);
+    const differenceKeys2 = _.difference(keys2, keys1);
+    for (let i = 0; i < unionKeys.length; i += 1) {
+      let key = unionKeys[i];
+      if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
+        valueForPush = {
+          key,
+          type: "nested",
+          value: _.sortBy(genDiff(obj1[key], obj2[key]), "key"),
+        };
+        diff.push(valueForPush);
+      } else if (obj1[key] === obj2[key]) {
+        valueForPush = {
+          key,
+          type: "unchanged",
+          value: obj1[key],
+        };
+        diff.push(valueForPush);
+      } else if (
+        obj1[key] !== obj2[key] &&
+        !differenceKeys2.includes(key) &&
+        !differenceKeys1.includes(key)
+      ) {
+        valueForPush = {
+          key,
+          type: "changed",
+          value: obj2[key],
+          prevValue: obj1[key],
+        };
+        diff.push(valueForPush);
+      }
     }
-    // diff.push(valueForPush);
-  }
-  //diff.push(valueForPush);
-
-  // const keys2 = _.sortBy(Object.keys(obj2));
-  for (let keyIndex = 0; keyIndex < keys2.length; keyIndex += 1) {
-    const key2 = keys2[keyIndex];
-    // const value1 = obj1[key];
-    const value2 = obj2[key2];
-    if (!(key2 in obj1)) {
-      diff.push({
+    for (let j = 0; j < differenceKeys1.length; j += 1) {
+      const key1 = differenceKeys1[j];
+      valueForPush = {
+        key: key1,
+        type: "removed",
+        value: obj1[key1],
+      };
+      diff.push(valueForPush);
+    }
+    for (let k = 0; k < differenceKeys2.length; k += 1) {
+      const key2 = differenceKeys2[k];
+      valueForPush = {
         key: key2,
-        type: 'added',
-        value: value2,
-      });
+        type: "added",
+        value: obj2[key2],
+      };
+      diff.push(valueForPush);
     }
+    _.sortBy(diff);
   }
   return diff;
 }
 
-// console.log(genDiff(object1, object2, 'stylish'));
 console.log(genDiff(object1, object2, 'stylish'));
-/* const support = [];
-console.log(JSON.stringify(genDiff(object1, object2, 'stylish'), (key, value) => {
-  if (_.isPlainObject(value)) {
-    if (support.includes(value)) {
-      return;
-    }
-    support.push(value);
-  }
-  return value;
-})); */ // , stylish(genDiff(object1, object2, 'stylish'))));
-
-/* function genDiff(obj1, obj2, formatName) {
-  const diff = {};
-  const keys1 = Object.keys(obj1);
-  for (let keyIndex = 0; keyIndex < keys1.length; keyIndex += 1) {
-    const key = keys1[keyIndex];
-    const value1 = obj1[key];
-    const value2 = obj2[key];
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
-      const nestedDiff = genDiff(value1, value2, formatName);
-      diff[key] = nestedDiff;
-    } else if (value1 !== value2) {
-      diff[`- ${key}`] = value1;
-      diff[`+ ${key}`] = value2;
-    } else {
-      diff[`  ${key}`] = value1;
-    }
-  }
-  const keys2 = Object.keys(obj2);
-  for (let keyIndex = 0; keyIndex < keys2.length; keyIndex += 1) {
-    const key2 = keys2[keyIndex];
-    const value2 = obj2[key2];
-    if (!(key2 in obj1)) {
-      diff[`+ ${key2}`] = value2;
-    }
-  }
-  return diff;
-} */
 
 function sortObject(obj) {
   const sortedObject = {};
@@ -182,13 +130,13 @@ function sortObject(obj) {
       const aSign = a[0] === '+' || a[0] === '-' || a[0] === ' ';
       const bSign = b[0] === '+' || b[0] === '-' || b[0] === ' ';
       if (aSign && bSign) {
-        return (a.slice(2)).localeCompare(b.slice(2));
+        return a.slice(2).localeCompare(b.slice(2));
       }
       if (aSign) {
-        return (a.slice(2)).localeCompare(b);
+        return a.slice(2).localeCompare(b);
       }
       if (bSign) {
-        return (a).localeCompare(b.slice(2));
+        return a.localeCompare(b.slice(2));
       }
       return 0; // Maybe do I need to delete it?
     });
