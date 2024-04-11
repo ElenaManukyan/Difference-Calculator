@@ -11,7 +11,9 @@ program
   .option('-f, --format [type]', 'output format', 'stylish.js')
   .action((filepath1, filepath2, options) => {
     if (options.type === 'plain') {
-      console.log(parsePaths(filepath1, filepath1, 'plain'));
+      console.log(parsePaths(filepath1, filepath2, 'plain'));
+    } else {
+      console.log(parsePaths(filepath1, filepath2, 'stylish'));
     }
   })
   .parse(process.argv);

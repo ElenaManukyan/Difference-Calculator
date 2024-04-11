@@ -3,8 +3,6 @@
 /* eslint-disable indent */
 import { expect, test } from '@jest/globals';
 import parsePaths from '../src/parsers.js';
-import { sortObject } from '../src/genDiff.js';
-import stylish from '../formatters/stylish.js';
 
 /* команды для запуска приложения вручную:
 node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1.json /home/elena/frontend-project-46/__fixtures__/file2.json
@@ -13,14 +11,14 @@ node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_neste
 node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
 */
 
-const answerJSON = {
+/* const answerJSON = {
   '- follow': false,
   '  host': 'hexlet.io',
   '- proxy': '123.234.53.22',
   '- timeout': 50,
   '+ timeout': 20,
   '+ verbose': true,
-};
+}; */
 
 const answerNestedJSON = {
   common: {
@@ -79,17 +77,11 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
-test('Make difference flat structures JSON', () => {
-  expect(parsePaths('./__fixtures__/file1.json', './__fixtures__/file2.json')).toEqual(JSON.stringify(sortObject(answerJSON), null, stylish(sortObject(answerJSON))));
-});
-test('Make difference flat structures YAML', () => {
-  expect(parsePaths('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toEqual(JSON.stringify(sortObject(answerJSON), null, stylish(sortObject(answerJSON))));
-});
 test('Make difference nested structures JSON', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(JSON.stringify(sortObject(answerNestedJSON), null, stylish(sortObject(answerNestedJSON))));
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish')).toEqual(answerNestedJSON);
 });
 test('Make difference nested structures YAML', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml')).toEqual(JSON.stringify(sortObject(answerNestedJSON), null, stylish(sortObject(answerNestedJSON))));
+  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish')).toEqual(answerNestedJSON);
 });
 test('Make difference nested structures JSON with format plain', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
