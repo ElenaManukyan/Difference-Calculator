@@ -5,10 +5,14 @@
 <a href="https://codeclimate.com/github/ElenaManukyan/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/567e889cf3a5d076d28d/test_coverage" /></a>
 ## Demonstration:
 ### Creating difference between 2 flat .json files:
-<a href="https://asciinema.org/a/651304" target="_blank"><img src="https://asciinema.org/a/651304.svg" /></a>
+<a href="https://asciinema.org/a/653783" target="_blank"><img src="https://asciinema.org/a/653783.svg" /></a>
 ### Creating difference between 2 flat .yml files:
-<a href="https://asciinema.org/a/651305" target="_blank"><img src="https://asciinema.org/a/651305.svg" /></a>
-### Creating difference between 2 nested files .json:
-<a href="https://asciinema.org/a/651308" target="_blank"><img src="https://asciinema.org/a/651308.svg" /></a>
-### Creating difference between 2 nested files .yml:
-<a href="https://asciinema.org/a/651307" target="_blank"><img src="https://asciinema.org/a/651307.svg" /></a>
+<a href="https://asciinema.org/a/653784" target="_blank"><img src="https://asciinema.org/a/653784.svg" /></a>
+### Creating difference between 2 nested .json files:
+<a href="https://asciinema.org/a/653785" target="_blank"><img src="https://asciinema.org/a/653785.svg" /></a>
+### Creating difference between 2 nested .yml files:
+<a href="https://asciinema.org/a/653787" target="_blank"><img src="https://asciinema.org/a/653787.svg" /></a>
+### Creating difference between 2 nested .json files with '--format' parameter:
+<a href="https://asciinema.org/a/653786" target="_blank"><img src="https://asciinema.org/a/653786.svg" /></a>
+### Creating difference between 2 nested .yml files with '--format' parameter:
+<a href="https://asciinema.org/a/653788" target="_blank"><img src="https://asciinema.org/a/653788.svg" /></a>
