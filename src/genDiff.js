@@ -4,8 +4,8 @@ let valueForPush;
 function genDiff(obj1, obj2, formatName) {
   const diff = [];
   if (_.isPlainObject(obj1) && _.isPlainObject(obj2)) {
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
+    const keys1 = _.sortBy(Object.keys(obj1));
+    const keys2 = _.sortBy(Object.keys(obj2));
     const unionKeys = _.union(keys1, keys2);
     const differenceKeys1 = _.difference(keys1, keys2);
     const differenceKeys2 = _.difference(keys2, keys1);
@@ -25,6 +25,7 @@ function genDiff(obj1, obj2, formatName) {
           value: obj1[key],
         };
         diff.push(valueForPush);
+        _.sortBy(diff, 'key');
       } else if (
         obj1[key] !== obj2[key]
         && !differenceKeys2.includes(key)
@@ -37,6 +38,7 @@ function genDiff(obj1, obj2, formatName) {
           prevValue: obj1[key],
         };
         diff.push(valueForPush);
+        _.sortBy(diff, 'key');
       }
     }
     for (let j = 0; j < differenceKeys1.length; j += 1) {
@@ -47,6 +49,7 @@ function genDiff(obj1, obj2, formatName) {
         value: obj1[key1],
       };
       diff.push(valueForPush);
+      _.sortBy(diff, 'key');
     }
     for (let k = 0; k < differenceKeys2.length; k += 1) {
       const key2 = differenceKeys2[k];
@@ -56,10 +59,11 @@ function genDiff(obj1, obj2, formatName) {
         value: obj2[key2],
       };
       diff.push(valueForPush);
+      _.sortBy(diff, 'key');
     }
-    _.sortBy(diff);
+    _.sortBy(diff, 'key');
   }
-  return diff;
+  return _.sortBy(diff, 'key');
 }
 
 export default genDiff;

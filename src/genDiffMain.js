@@ -8,12 +8,9 @@ program
   .description('Compares two configuration files and shows a difference.')
   .arguments('<filepath1>')
   .arguments('<filepath2>')
-  .option('-f, --format [type]', 'output format', 'stylish.js')
+  .option('-f, --format <format>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => {
-    if (options.type === 'plain') {
-      console.log(parsePaths(filepath1, filepath2, 'plain'));
-    } else {
-      console.log(parsePaths(filepath1, filepath2, 'stylish'));
-    }
+    const format = options.format || 'stylish';
+    console.log(parsePaths(filepath1, filepath2, format));
   })
   .parse(process.argv);

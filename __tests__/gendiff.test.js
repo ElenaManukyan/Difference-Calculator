@@ -5,10 +5,29 @@ import { expect, test } from '@jest/globals';
 import parsePaths from '../src/parsers.js';
 
 /* команды для запуска приложения вручную:
+2FlatJSONFiles.cast
+Creating difference between 2 flat .json files
 node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1.json /home/elena/frontend-project-46/__fixtures__/file2.json
+
+2FlatYAMLFiles.cast
+Creating difference between 2 flat .yml files
 node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1.yml /home/elena/frontend-project-46/__fixtures__/file2.yml
-node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+
+2NestedJSONFiles.cast
+Creating difference between 2 nested .json files
 node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
+
+2NestedYAMLFiles.cast
+Creating difference between 2 nested .yml files
+node src/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+
+2NestedJSONFilesFormatPlain.cast
+Creating difference between 2 nested .json files with '--format' parameter
+node src/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
+
+2NestedYAMLFilesFormatPlain.cast
+Creating difference between 2 nested .yml files with '--format' parameter
+node src/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
 */
 
 /* const answerJSON = {
