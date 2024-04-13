@@ -16,3 +16,5 @@
 <a href="https://asciinema.org/a/653786" target="_blank"><img src="https://asciinema.org/a/653786.svg" /></a>
 ### Creating difference between 2 nested .yml files with '--format' parameter:
 <a href="https://asciinema.org/a/653788" target="_blank"><img src="https://asciinema.org/a/653788.svg" /></a>
+### Creating difference between 2 nested .yml files with '--format' parameter = 'json':
+<a href="https://asciinema.org/a/653945" target="_blank"><img src="https://asciinema.org/a/653945.svg" /></a>
