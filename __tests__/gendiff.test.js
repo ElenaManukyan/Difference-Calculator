@@ -3,6 +3,7 @@
 /* eslint-disable indent */
 import { expect, test } from '@jest/globals';
 import parsePaths from '../src/parsers.js';
+import { formatterForStylish } from '../formatters/stylish.js';
 
 /* команды для запуска приложения вручную:
 2FlatJSONFiles.cast
@@ -28,6 +29,10 @@ node src/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixture
 2NestedYAMLFilesFormatPlain.cast
 Creating difference between 2 nested .yml files with '--format' parameter
 node src/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+
+2NestedYAMLFilesFormatJson.cast
+Creating difference between 2 nested .yml files with '--format' parameter = 'json'
+node src/genDiffMain.js --format json  /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
 */
 
 /* const answerJSON = {
@@ -97,11 +102,14 @@ Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
 test('Make difference nested structures JSON', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish')).toEqual(answerNestedJSON);
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish')).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
 });
 test('Make difference nested structures YAML', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish')).toEqual(answerNestedJSON);
+  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish')).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
 });
 test('Make difference nested structures JSON with format plain', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
+});
+test('Make difference nested structures JSON with format json', () => {
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(JSON.stringify(answerNestedJSON));
 });
