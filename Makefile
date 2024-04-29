@@ -12,3 +12,7 @@ install:
 
 test-yml:
 	node src/parsers.js
+
+gendiff:
+	node bin/genDiffMain.js
+

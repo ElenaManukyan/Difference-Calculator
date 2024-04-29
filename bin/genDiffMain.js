@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import { program } from 'commander';
-import parsePaths from './parsers.js';
+import parsePaths from '../src/parsers.js';
 
 program
   .version('0.0.1')

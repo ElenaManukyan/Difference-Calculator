@@ -3,14 +3,16 @@ import plain from './plain.js';
 import JsonFormatter from './JSON.js';
 
 function chooseFormatters(difference, formatName) {
-  if (formatName === 'stylish') {
-    return JSON.stringify(stylish(difference), null, formatterForStylish(stylish(difference)));
+  switch (formatName) {
+    case 'stylish':
+      return JSON.stringify(stylish(difference), null, formatterForStylish(stylish(difference)));
+
+    case 'plain':
+      return plain(difference).slice(0, -1);
+
+    default:
+      return JsonFormatter(stylish(difference));
   }
-  if (formatName === 'plain') {
-    return plain(difference).slice(0, -1);
-  }
-  const diff = stylish(difference);
-  return JsonFormatter(diff);
 }
 
 export default chooseFormatters;
