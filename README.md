@@ -11,7 +11,8 @@ This console utility can calculate difference between 2 structures of data.
 ## Installation:
 `make install`
 ## How to use:
-`node bin/genDiffMain.js -h
+```
+node bin/genDiffMain.js -h
 
   Usage: gendiff [options] <filepath1> <filepath2>
 
@@ -20,7 +21,8 @@ This console utility can calculate difference between 2 structures of data.
   Options:
     -V, --version        output the version number
     -f, --format [type]  output format
-    -h, --help           output usage information`
+    -h, --help           output usage information
+```
 ## Usage examples:
 ### Creating difference between 2 flat .json files:
 <a href="https://asciinema.org/a/653783" target="_blank"><img src="https://asciinema.org/a/653783.svg" /></a>
