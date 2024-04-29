@@ -6,8 +6,8 @@
 # Description:
 This console utility can calculate difference between 2 structures of data.
 ## Opportunities of the utility:
-*Support for different input formats: yaml, json;
-*Generating a report in the form of plain text, stylish and json;
+* Support for different input formats: yaml, json;
+* Generating a report in the form of plain text, stylish and json;
 ## Installation:
 `make install`
 ## How to use:
