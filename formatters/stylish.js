@@ -6,15 +6,21 @@ function stylish(list) {
     const element = list[i];
     if (_.isArray(element.value)) {
       result[element.key] = stylish(element.value);
-    } else if (element.type === 'added') {
-      result[`+ ${element.key}`] = element.value;
-    } else if (element.type === 'unchanged') {
-      result[`  ${element.key}`] = element.value;
-    } else if (element.type === 'removed') {
-      result[`- ${element.key}`] = element.value;
-    } else if (element.type === 'changed') {
-      result[`- ${element.key}`] = element.prevValue;
-      result[`+ ${element.key}`] = element.value;
+    } else {
+      switch (element.type) {
+        case 'added':
+          result[`+ ${element.key}`] = element.value;
+          break;
+        case 'unchanged':
+          result[`  ${element.key}`] = element.value;
+          break;
+        case 'removed':
+          result[`- ${element.key}`] = element.value;
+          break;
+        default:
+          result[`- ${element.key}`] = element.prevValue;
+          result[`+ ${element.key}`] = element.value;
+      }
     }
   }
   return result;
