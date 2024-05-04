@@ -105,12 +105,13 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
-test('Make difference nested structures JSON', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish')).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
+test.each([
+  ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
+  ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
+])('Make difference nested structures JSON/YAML', (filePath1, filePath2, formatter) => {
+  expect(parsePaths(filePath1, filePath2, formatter)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
 });
-test('Make difference nested structures YAML', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish')).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
-});
+
 test('Make difference nested structures JSON with format plain', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
 });
