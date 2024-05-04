@@ -22,27 +22,6 @@ function stylish(list) {
       }
     }
   });
-  /* for (let i = 0; i < list.length; i += 1) {
-    const element = list[i];
-    if (_.isArray(element.value)) {
-      result[element.key] = stylish(element.value);
-    } else {
-      switch (element.type) {
-        case 'added':
-          result[`+ ${element.key}`] = element.value;
-          break;
-        case 'unchanged':
-          result[`  ${element.key}`] = element.value;
-          break;
-        case 'removed':
-          result[`- ${element.key}`] = element.value;
-          break;
-        default:
-          result[`- ${element.key}`] = element.prevValue;
-          result[`+ ${element.key}`] = element.value;
-      }
-    }
-  } */
   return result;
 }
 
