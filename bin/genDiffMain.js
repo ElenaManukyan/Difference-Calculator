@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import process from 'node:process';
 import { program } from 'commander';
 import parsePaths from '../src/parsers.js';
 
@@ -12,4 +11,4 @@ program
     const format = options.format || 'stylish';
     console.log(parsePaths(filepath1, filepath2, format));
   })
-  .parse(process.argv);
+  .parse();
