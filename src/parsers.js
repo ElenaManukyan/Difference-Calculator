@@ -14,7 +14,7 @@ function chooseParser(filePath, format) {
   return fileContent;
 }
 
-function parsePaths(filepath1, filepath2, formatName) {
+function parsePaths(filepath1, filepath2, formatName = 'stylish') {
   const format1 = path.extname(String(filepath1));
   const format2 = path.extname(String(filepath2));
   const path1 = path.resolve(process.cwd(), String(filepath1));

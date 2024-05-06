@@ -108,8 +108,8 @@ Property 'group3' was added with value: [complex value]`;
 test.each([
   ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
   ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
-])('Make difference nested structures JSON/YAML', (filePath1, filePath2, formatter) => {
-  expect(parsePaths(filePath1, filePath2, formatter)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
+])('Make difference nested structures JSON/YAML', (filePath1, filePath2) => {
+  expect(parsePaths(filePath1, filePath2)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
 });
 
 test('Make difference nested structures JSON with format plain', () => {
