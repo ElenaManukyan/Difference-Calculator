@@ -5,7 +5,8 @@ import JsonFormatter from './JSON.js';
 function chooseFormatters(difference, formatName) {
   switch (formatName) {
     case 'stylish':
-      return JSON.stringify(stylish(difference), null, formatterForStylish(stylish(difference)));
+      // return JSON.stringify(stylish(difference), null, formatterForStylish(stylish(difference)));
+      return JSON.stringify(stylish(difference), null, 2);
     case 'plain':
       return plain(difference).slice(0, -1);
     default:
