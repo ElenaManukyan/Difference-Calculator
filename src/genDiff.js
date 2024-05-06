@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function genDiff(obj1, obj2, formatName) {
+function genDiff(obj1, obj2) {
   if (_.isPlainObject(obj1) && _.isPlainObject(obj2)) {
     const keys1 = _.sortBy(Object.keys(obj1));
     const keys2 = _.sortBy(Object.keys(obj2));
@@ -10,7 +10,7 @@ function genDiff(obj1, obj2, formatName) {
         return {
           key,
           type: 'nested',
-          value: _.sortBy(genDiff(obj1[key], obj2[key], formatName), 'key'),
+          value: _.sortBy(genDiff(obj1[key], obj2[key]), 'key'),
         };
       } if (obj1[key] === obj2[key]) {
         return {

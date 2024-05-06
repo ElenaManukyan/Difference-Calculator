@@ -21,7 +21,7 @@ function parsePaths(filepath1, filepath2, formatName) {
   const path2 = path.resolve(process.cwd(), String(filepath2));
   const fileContent1 = chooseParser(path1, format1);
   const fileContent2 = chooseParser(path2, format2);
-  const result = chooseFormatters(genDiff(fileContent1, fileContent2, formatName), formatName);
+  const result = chooseFormatters(genDiff(fileContent1, fileContent2), formatName);
   return result;
 }
 
