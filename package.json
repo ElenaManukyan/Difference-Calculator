@@ -6,7 +6,7 @@
     "test": "jest"
   },
   "description": "Difference calculator",
-  "main": "bin/genDiffMain.js",
+  "main": "src/parsers.js",
   "author": "",
   "license": "ISC",
   "devDependencies": {
