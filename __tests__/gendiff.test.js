@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 import { expect, test } from '@jest/globals';
 import parsePaths from '../src/parsers.js';
-import { formatterForStylish } from '../formatters/stylish.js';
+import genDiff from '../src/genDiff.js';
 
 /* В файле package.json было:
   "description": "[![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)",
@@ -109,9 +109,12 @@ test.each([
   ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
   ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
 ])('Make difference nested structures JSON/YAML', (filePath1, filePath2) => {
-  // expect(parsePaths(filePath1, filePath2)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
   expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
+
+/*test('genDiff(filepath1, filepath2)', (filePath1, filePath2) => {
+  expect(genDiff(filePath1, filePath2)).toEqual(answerNestedJSON);
+});*/
 
 test('Make difference nested structures JSON with format plain', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
