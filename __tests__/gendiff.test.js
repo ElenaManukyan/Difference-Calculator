@@ -48,42 +48,42 @@ node bin/genDiffMain.js --format json  /home/elena/frontend-project-46/__fixture
   '+ verbose': true,
 }; */
 
-const answerNestedJSON = {
+const answerNestedJSON = `{
   common: {
-    '+ follow': false,
-    '  setting1': 'Value 1',
-    '- setting2': 200,
-    '- setting3': true,
-    '+ setting3': null,
-    '+ setting4': 'blah blah',
-    '+ setting5': {
-          key5: 'value5'
+    + follow: false,
+      setting1: 'Value 1',
+    - setting2: 200,
+    - setting3: true,
+    + setting3: null,
+    + setting4: 'blah blah',
+    + setting5: {
+          key5: value5
       },
       setting6: {
           doge: {
-            '- wow': '',
-            '+ wow': 'so much'
+            - wow: '',
+            + wow: 'so much'
           },
-        '  key': 'value',
-        '+ ops': 'vops'
+          key: 'value',
+        + ops: 'vops'
       }
   },
   group1: {
-    '- baz': 'bas',
-    '+ baz': 'bars',
-    '  foo': 'bar',
-    '- nest': {
+    - baz: 'bas',
+    + baz: 'bars',
+      foo: 'bar',
+    - nest: {
           key: 'value'
       },
-    '+ nest': 'str'
+    + nest: 'str'
   },
-'- group2': {
+- group2: {
       abc: 12345,
       deep: {
           id: 45
       }
   },
-'+ group3': {
++ group3: {
       deep: {
           id: {
               number: 45
@@ -91,7 +91,7 @@ const answerNestedJSON = {
       },
       fee: 100500
   }
-};
+}`;
 
 const answerPlain = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
@@ -112,9 +112,9 @@ test.each([
   expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
-/*test('genDiff(filepath1, filepath2)', (filePath1, filePath2) => {
-  expect(genDiff(filePath1, filePath2)).toEqual(answerNestedJSON);
-});*/
+test('genDiff(filepath1, filepath2)', () => {
+  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(answerNestedJSON);
+});
 
 test('Make difference nested structures JSON with format plain', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
