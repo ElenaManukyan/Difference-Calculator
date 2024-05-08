@@ -49,48 +49,48 @@ node bin/genDiffMain.js --format json  /home/elena/frontend-project-46/__fixture
 }; */
 
 const answerNestedJSON = `{
-  common: {
-    + follow: false,
-      setting1: 'Value 1',
-    - setting2: 200,
-    - setting3: true,
-    + setting3: null,
-    + setting4: 'blah blah',
-    + setting5: {
-          key5: value5
-      },
-      setting6: {
-          doge: {
-            - wow: '',
-            + wow: 'so much'
-          },
-          key: 'value',
-        + ops: 'vops'
+common: {
+  + follow: false
+    setting1: Value 1
+  - setting2: 200
+  - setting3: true
+  + setting3: null
+  + setting4: blah blah
+  + setting5: {
+      key5: value5
+    }
+  setting6: {
+      doge: {
+        - wow: ''
+        + wow: so much
       }
-  },
-  group1: {
-    - baz: 'bas',
-    + baz: 'bars',
-      foo: 'bar',
-    - nest: {
-          key: 'value'
-      },
-    + nest: 'str'
-  },
+      key: value
+    + ops: vops
+  }
+}
+group1: {
+  - baz: bas
+  + baz: bars
+    foo: bar
+  - nest: {
+        key: value
+    }
+  + nest: str
+}
 - group2: {
-      abc: 12345,
+      abc: 12345
       deep: {
           id: 45
       }
-  },
+}
 + group3: {
       deep: {
           id: {
               number: 45
           }
-      },
+      }
       fee: 100500
-  }
+}
 }`;
 
 const answerPlain = `Property 'common.follow' was added with value: false
@@ -109,7 +109,7 @@ test.each([
   ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
   ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
 ])('Make difference nested structures JSON/YAML', (filePath1, filePath2) => {
-  expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
+  expect(genDiff(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
 test('genDiff(filepath1, filepath2)', () => {
@@ -117,8 +117,8 @@ test('genDiff(filepath1, filepath2)', () => {
 });
 
 test('Make difference nested structures JSON with format plain', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
+  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
 });
 test('Make difference nested structures JSON with format json', () => {
-  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(JSON.stringify(answerNestedJSON));
+  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(JSON.stringify(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')));
 });
