@@ -109,7 +109,8 @@ test.each([
   ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
   ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
 ])('Make difference nested structures JSON/YAML', (filePath1, filePath2) => {
-  expect(parsePaths(filePath1, filePath2)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
+  // expect(parsePaths(filePath1, filePath2)).toEqual(JSON.stringify(answerNestedJSON, null, formatterForStylish(answerNestedJSON)));
+  expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
 test('Make difference nested structures JSON with format plain', () => {
