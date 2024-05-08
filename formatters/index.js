@@ -4,12 +4,14 @@ import JsonFormatter from './JSON.js';
 
 function chooseFormatters(difference, formatName) {
   switch (formatName) {
-    case 'stylish':
-      return stylish(difference);
+    case 'json':
+      return JsonFormatter(stylish(difference));
     case 'plain':
       return plain(difference).slice(0, -1);
+    case 'stylish':
+      return stylish(difference);
     default:
-      return JsonFormatter(stylish(difference));
+      throw new Error(`Format name ${formatName} doesn't exist`);
   }
 }
 
