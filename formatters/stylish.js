@@ -26,7 +26,7 @@ function stylishObj(list) {
 }
 
 function formatterForStylish(object) {
-  let level = -1;
+  let level = -2;
   const keys = Object.keys(object);
   for (let j = 0; j < keys.length; j += 1) {
     const key = keys[j];
