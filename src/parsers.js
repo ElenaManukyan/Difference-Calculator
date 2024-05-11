@@ -1,10 +1,22 @@
 import path from 'node:path';
 import process from 'node:process';
-import parseFileJSON from './parseFileJSON.js';
-import parseFileYAML from './parseFileYAML.js';
+import fs from 'fs'; // or 'node:fs'
+import yaml from 'js-yaml';
+import chooseFormatters from '../formatters/index.js';
+import genDiff from './genDiff.js';
 
+const parseFileYAML = (filepath) => {
+  const yamlFile = fs.readFileSync(filepath, 'utf8');
+  const loadedYaml = yaml.load(yamlFile);
+  return loadedYaml;
+};
 
-function chooseParser(filePath, format) {
+const parseFileJSON = (filepath) => {
+  const text = fs.readFileSync(filepath, 'utf8');
+  return JSON.parse(text);
+};
+
+function parsers(filePath, format) {
   if (format === '.json') {
     const fileContent = parseFileJSON(filePath);
     return fileContent;
@@ -13,22 +25,18 @@ function chooseParser(filePath, format) {
   return fileContent;
 }
 
-function parsePaths(filepath) {
-  const format = path.extname(String(filepath));
-  //const format2 = path.extname(String(filepath2));
-  const pathResolved = path.resolve(process.cwd(), String(filepath));
-  //const path2 = path.resolve(process.cwd(), String(filepath2));
-  const fileContent = chooseParser(pathResolved, format);
-  return fileContent;
-  //const fileContent2 = chooseParser(path2, format2);
-  //const result = chooseFormatters(genDiff(fileContent1, fileContent2), formatName);
-  //return result;
-  //const strDiff = genDiff(fileContent1, fileContent2);
-  //console.log(`strDiff= ${strDiff}`);
-  //console.log(`JSON.stringify(strDiff)= ${JSON.stringify(strDiff)}`);
-  /*const arrDiff = strDiff.split('\n').map((line) => {
-
-  })*/
+function parsePaths(filepath1, filepath2, formatter = 'stylish') {
+  const fileFormat1 = path.extname(String(filepath1));
+  const pathResolved1 = path.resolve(process.cwd(), String(filepath1));
+  const fileContent1 = parsers(pathResolved1, fileFormat1);
+  // console.log(`fileContent1= ${JSON.stringify(fileContent1)}`);
+  const fileFormat2 = path.extname(String(filepath2));
+  const pathResolved2 = path.resolve(process.cwd(), String(filepath2));
+  const fileContent2 = parsers(pathResolved2, fileFormat2);
+  const difference = genDiff(fileContent1, fileContent2);
+  // console.log(`typeof difference= ${Array.isArray(difference)}`);
+  const result = chooseFormatters(difference, formatter);
+  return result;
 }
 
 export default parsePaths;

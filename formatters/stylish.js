@@ -1,10 +1,10 @@
 import _ from 'lodash';
 
-function stylish(list) {
+function stylishObj(list) {
   const result = {};
   list.forEach((element) => {
     if (_.isArray(element.value)) {
-      result[element.key] = stylish(element.value);
+      result[element.key] = stylishObj(element.value);
     } else {
       switch (element.type) {
         case 'added':
@@ -38,4 +38,10 @@ function formatterForStylish(object) {
   return level;
 }
 
-export { stylish, formatterForStylish };
+function stylish(object) {
+  const resJsonString = JSON.stringify(stylishObj(object), null, formatterForStylish(object));
+  const newJsonString = resJsonString.replace(/"/g, '');
+  return newJsonString;
+}
+
+export { stylish, formatterForStylish, stylishObj };

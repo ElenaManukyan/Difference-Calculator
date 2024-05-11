@@ -3,7 +3,6 @@
 /* eslint-disable indent */
 import { expect, test } from '@jest/globals';
 import parsePaths from '../src/parsers.js';
-import genDiff from '../src/genDiff.js';
 
 /* В файле package.json было:
   "description": "[![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)",
@@ -103,22 +102,26 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`;
+Property 'group3' was added with value: [complex value]
+`;
+
+const answerJSON = '[{"key":"common","type":"nested","value":[{"key":"follow","type":"added","value":false},{"key":"setting1","type":"unchanged","value":"Value 1"},{"key":"setting2","type":"removed","value":200},{"key":"setting3","type":"changed","value":null,"prevValue":true},{"key":"setting4","type":"added","value":"blah blah"},{"key":"setting5","type":"added","value":{"key5":"value5"}},{"key":"setting6","type":"nested","value":[{"key":"doge","type":"nested","value":[{"key":"wow","type":"changed","value":"so much","prevValue":""}]},{"key":"key","type":"unchanged","value":"value"},{"key":"ops","type":"added","value":"vops"}]}]},{"key":"group1","type":"nested","value":[{"key":"baz","type":"changed","value":"bars","prevValue":"bas"},{"key":"foo","type":"unchanged","value":"bar"},{"key":"nest","type":"changed","value":"str","prevValue":{"key":"value"}}]},{"key":"group2","type":"removed","value":{"abc":12345,"deep":{"id":45}}},{"key":"group3","type":"added","value":{"deep":{"id":{"number":45}},"fee":100500}}]';
 
 test.each([
   ['./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'stylish'],
   ['./__fixtures__/file1_nested.yml', './__fixtures__/file2_nested.yml', 'stylish'],
 ])('Make difference nested structures JSON/YAML', (filePath1, filePath2) => {
-  expect(genDiff(filePath1, filePath2)).toEqual(answerNestedJSON);
+  expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
-test('genDiff(filepath1, filepath2)', () => {
-  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(answerNestedJSON);
+test('parsePaths(filepath1, filepath2)', () => {
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(answerNestedJSON);
 });
 
 test('Make difference nested structures JSON with format plain', () => {
-  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'plain')).toEqual(answerPlain);
 });
+
 test('Make difference nested structures JSON with format json', () => {
-  expect(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(JSON.stringify(genDiff('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')));
+  expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(answerJSON);
 });
