@@ -40,7 +40,7 @@ function formatterForStylish(object) {
 
 function stylish(object) {
   // const resJsonString = JSON.stringify(stylishObj(object), null, formatterForStylish(object));
-  const resJsonString = JSON.stringify(stylishObj(object), null, 1);
+  const resJsonString = JSON.stringify(stylishObj(object), null, 2);
   const newJsonString = resJsonString.replace(/"/g, '');
   const result = newJsonString.replace(/,/g, '');
   return result;
