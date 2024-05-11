@@ -26,7 +26,7 @@ function stylishObj(list) {
 }
 
 function formatterForStylish(object) {
-  let level = 1;
+  let level = 0;
   const keys = Object.keys(object);
   for (let j = 0; j < keys.length; j += 1) {
     const key = keys[j];
@@ -41,7 +41,8 @@ function formatterForStylish(object) {
 function stylish(object) {
   const resJsonString = JSON.stringify(stylishObj(object), null, formatterForStylish(object));
   const newJsonString = resJsonString.replace(/"/g, '');
-  return newJsonString;
+  const result = newJsonString.replace(/,/g, '');
+  return result;
 }
 
 export { stylish, formatterForStylish, stylishObj };
