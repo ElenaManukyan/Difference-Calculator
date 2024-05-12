@@ -12,7 +12,7 @@ function stylishObj(list) {
           break;
         case 'unchanged':
           // result[`  ${element.key}`] = element.value;
-          result[`  ${element.key}`] = element.value;
+          result[`${element.key}`] = element.value;
           break;
         case 'removed':
           result[`- ${element.key}`] = element.value;
@@ -49,27 +49,25 @@ function formatterForStylish(object, depth = 1) {
   return JSON.stringify(object, null, spaces).replace(/"/g, '').replace(/,/g, '');
 }
 
-function stylish(object) {
-  function mapped(obj) {
-    const result = {};
-    const entries = Object.entries(obj);
-    const keys = entries.map((entry) => entry[0]);
-    const newKeys = keys.map((key) => {
-      const indentedKey = (key.startsWith('+') || key.startsWith('-')) ? key : `  ${key}`;
-      return indentedKey;
-    });
-    for (let i = 0; i < newKeys.length; i += 1) {
-      const key = keys[i];
-      const newKey = newKeys[i];
-      if (_.isPlainObject(obj[key])) {
-        result[`${newKey}`] = mapped(obj[key]);
-      }
-      result[`${newKey}`] = obj[key];
+function stylish(object, level = 2) {
+  let result = '';
+  // let spaces = 0;
+  const entries = Object.entries(object);
+  const keys = entries.map((entry) => entry[0]);
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    const value = object[key];
+    const countedSpaces = (key.startsWith('+') || key.startsWith('-')) ? 2 : 4;
+    const spaces = ' '.repeat(countedSpaces + level);
+    // console.log(`countedSpaces= ${countedSpaces}`);
+    console.log(`spaces= ${spaces.length}`);
+    if (_.isPlainObject(value)) {
+      result += `${spaces}${key}: ${JSON.stringify(value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '')}\n`;
+      stylish(value, level + 1);
     }
-    return result;
+    result += `${spaces}${key}: ${value}\n`;
   }
-  console.log(`mapped(object)= ${JSON.stringify(mapped(object))}`);
-  const result = JSON.stringify(object, null, 4).replace(/"/g, '').replace(/,/g, '');
+
   return result;
 }
 
