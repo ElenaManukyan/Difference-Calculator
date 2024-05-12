@@ -34,7 +34,7 @@ function parsePaths(filepath1, filepath2, formatter = 'stylish') {
   const pathResolved2 = path.resolve(process.cwd(), String(filepath2));
   const fileContent2 = parsers(pathResolved2, fileFormat2);
   const difference = genDiff(fileContent1, fileContent2);
-  // console.log(`typeof difference= ${Array.isArray(difference)}`);
+  // console.log(`difference= ${JSON.stringify(difference, null, 2)}`);
   const result = chooseFormatters(difference, formatter);
   return result;
 }

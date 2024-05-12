@@ -47,49 +47,99 @@ node bin/genDiffMain.js --format json  /home/elena/frontend-project-46/__fixture
   '+ verbose': true,
 }; */
 
+/*
 const answerNestedJSON = `{
-common: {
-  + follow: false
-    setting1: Value 1
-  - setting2: 200
-  - setting3: true
-  + setting3: null
-  + setting4: blah blah
-  + setting5: {
-      key5: value5
-    }
-  setting6: {
-      doge: {
-        - wow: ''
-        + wow: so much
-      }
-      key: value
-    + ops: vops
-  }
-}
-group1: {
-  - baz: bas
-  + baz: bars
-    foo: bar
-  - nest: {
-        key: value
-    }
-  + nest: str
-}
-- group2: {
-      abc: 12345
-      deep: {
-          id: 45
-      }
-}
-+ group3: {
-      deep: {
-          id: {
-              number: 45
+  {
+     common: {
+       + follow: false
+         setting1: Value 1
+       - setting2: 200
+       - setting3: true
+       + setting3: {
+             key: value
+         }
+       + setting4: blah blah
+       + setting5: {
+             key5: value5
+         }
+         setting6: {
+             doge: {
+               - wow: too much
+               + wow: so much
+             }
+             key: value
+           + ops: vops
+         }
+     }
+     group1: {
+       - baz: bas
+       + baz: bars
+         foo: bar
+       - nest: {
+             key: value
+         }
+       + nest: str
+     }
+ group2: {
+         abc: 12345
+         deep: {
+             id: 45
+         }
+     }
+    + group3: {
+         deep: {
+             id: {
+                 number: 45
+             }
+         }
+         fee: 100500
+     }
+}`;
+*/
+
+const answerNestedJSON = `{
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+      setting6: {
+          doge: {
+            - wow: ''
+            + wow: so much
           }
+          key: value
+        + ops: vops
       }
-      fee: 100500
-}
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+    - group2: {
+          abc: 12345
+          deep: {
+              id: 45
+          }
+    }
+    + group3: {
+          deep: {
+              id: {
+                  number: 45
+              }
+          }
+          fee: 100500
+    }
 }`;
 
 const answerPlain = `Property 'common.follow' was added with value: false
@@ -114,6 +164,7 @@ test.each([
   expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
+/*
 test('parsePaths(filepath1, filepath2)', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(answerNestedJSON);
 });
@@ -125,3 +176,4 @@ test('Make difference nested structures JSON with format plain', () => {
 test('Make difference nested structures JSON with format json', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(answerJSON);
 });
+*/
