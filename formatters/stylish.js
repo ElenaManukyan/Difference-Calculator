@@ -1,5 +1,45 @@
 import _ from 'lodash';
 
+function stylish(list) {
+  function innerFunc(listOfDifference, levelOfDepth) {
+    let res = '';
+    const countedSpaces = ' '.repeat(4 * levelOfDepth);
+    listOfDifference.forEach((element) => {
+      if (_.isArray(element.value)) {
+        res += `${countedSpaces}${element.key}: {\n`;
+        res += innerFunc(element.value, levelOfDepth + 1);
+        res += `${countedSpaces}}\n`;
+      } else {
+        let value;
+        if (typeof element.value === 'object') {
+          value = JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '');
+        } else {
+          value = element.value;
+        }
+        switch (element.type) {
+          case 'added':
+            res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${value}\n`;
+            break;
+          case 'unchanged':
+            res += `${countedSpaces.slice(0, -2)}  ${element.key}: ${value}\n`;
+            break;
+          case 'removed':
+            res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${value}\n`;
+            break;
+          default:
+            res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${value}\n`;
+            res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${value}\n`;
+        }
+      }
+    });
+    return res;
+  }
+  const result = `{\n${innerFunc(list, 1)}}\n`;
+  return result;
+}
+
+
+/*
 function stylishObj(list) {
   const result = {};
   list.forEach((element) => {
@@ -25,7 +65,9 @@ function stylishObj(list) {
   });
   return result;
 }
+*/
 
+/*
 function formatterForStylish(object, depth = 1) {
   let spaces;
   if (depth === 1) {
@@ -68,7 +110,9 @@ function stylish(object, level = 2) {
     result += `${spaces}${key}: ${value}\n`;
   }
 
-  return result;
+  // return result;
+  return JSON.stringify(object, null, 4).replace(/"/g, '').replace(/,/g, '');
 }
+*/
 
-export { stylish, stylishObj };
+export default stylish;

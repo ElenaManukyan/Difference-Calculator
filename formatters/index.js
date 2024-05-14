@@ -1,4 +1,4 @@
-import { stylish, stylishObj } from './stylish.js';
+import stylish from './stylish.js';
 import plain from './plain.js';
 import JsonFormatter from './JSON.js';
 
@@ -9,7 +9,8 @@ function chooseFormatters(difference, formatName = 'stylish') {
     case 'plain':
       return plain(difference);
     case 'stylish':
-      return stylish(stylishObj(difference));
+      // return stylish(stylishObj(difference));
+      return stylish(difference);
     default:
       throw new Error(`Format name ${formatName} doesn't exist`);
   }
