@@ -34,7 +34,7 @@ function stylish(list) {
     });
     return res;
   }
-  const result = `{\n${innerFunc(list, 0)}}\n`;
+  const result = `{\n${innerFunc(list, 1)}}\n`;
   return result;
 }
 
