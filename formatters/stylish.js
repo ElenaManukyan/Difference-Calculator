@@ -10,16 +10,13 @@ function stylish(list) {
         res += innerFunc(element.value, levelOfDepth + 1);
         res += `${countedSpaces}}\n`;
       } else {
-        let value;
-        let prevValue;
+        let { value } = element;
+        let { prevValue } = element;
         if (_.isPlainObject(element.value)) {
           value = JSON.stringify(element.value, null, 4 * (levelOfDepth + 1)).replace(/"/g, '').replace(/,/g, '');
-        } else if (_.isPlainObject(element.prevValue)) {
-          value = JSON.stringify(element.value, null, 4 * (levelOfDepth + 1)).replace(/"/g, '').replace(/,/g, '');
+        }
+        if (_.isPlainObject(element.prevValue)) {
           prevValue = JSON.stringify(element.prevValue, null, 4 * (levelOfDepth + 1)).replace(/"/g, '').replace(/,/g, '');
-        } else {
-          value = element.value;
-          prevValue = element.prevValue;
         }
         switch (element.type) {
           case 'added':
