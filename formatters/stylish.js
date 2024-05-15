@@ -10,8 +10,16 @@ function stylish(list) {
         res += innerFunc(element.value, levelOfDepth + 1);
         res += `${countedSpaces}}\n`;
       } else {
-        const value = typeof element.value === 'object' ? JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '') : element.value;
-        const prevValue = typeof element.prevValue === 'object' ? JSON.stringify(element.prevValue, null, countedSpaces).replace(/"/g, '').replace(/,/g, '') : element.prevValue;
+        let value;
+        let prevValue;
+        if (typeof element.value === 'object') {
+          value = JSON.stringify(element.value, null, 4 * (levelOfDepth + 1)).replace(/"/g, '').replace(/,/g, '');
+        } else if (typeof element.prevValue === 'object') {
+          prevValue = JSON.stringify(element.prevValue, null, 4 * (levelOfDepth + 1)).replace(/"/g, '').replace(/,/g, '');
+        } else {
+          value = element.value;
+          prevValue = element.prevValue;
+        }
         switch (element.type) {
           case 'added':
             res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${value}\n`;

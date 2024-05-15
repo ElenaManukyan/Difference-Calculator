@@ -108,14 +108,14 @@ const answerNestedJSON = `{
       + setting5: {
             key5: value5
         }
-      setting6: {
-          doge: {
-            - wow: ''
-            + wow: so much
-          }
-          key: value
-        + ops: vops
-      }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
     }
     group1: {
       - baz: bas
@@ -126,20 +126,20 @@ const answerNestedJSON = `{
         }
       + nest: str
     }
-    - group2: {
-          abc: 12345
-          deep: {
-              id: 45
-          }
-    }
-    + group3: {
-          deep: {
-              id: {
-                  number: 45
-              }
-          }
-          fee: 100500
-    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+  }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+  }
 }`;
 
 const answerPlain = `Property 'common.follow' was added with value: false
