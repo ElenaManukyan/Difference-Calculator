@@ -11,10 +11,13 @@ function stylish(list) {
         res += `${countedSpaces}}\n`;
       } else {
         let value;
-        if (typeof element.value === 'object') {
-          value = JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '');
+        let prevValue;
+        if (typeof element.value === 'object' || typeof element.prevValue === 'object') {
+          value = `{${JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '')}}`;
+          prevValue = `{${JSON.stringify(element.prevValue, null, countedSpaces).replace(/"/g, '').replace(/,/g, '')}}`;
         } else {
           value = element.value;
+          prevValue = element.prevValue;
         }
         switch (element.type) {
           case 'added':
@@ -26,15 +29,18 @@ function stylish(list) {
           case 'removed':
             res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${value}\n`;
             break;
-          default:
-            res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${value}\n`;
+          case 'changed':
+            res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${prevValue}\n`;
             res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${value}\n`;
+            break;
+          default:
+            throw new Error(`Element type ${element.type} doesn't exist`);
         }
       }
     });
     return res;
   }
-  const result = `{\n${innerFunc(list, 1)}}\n`;
+  const result = innerFunc(list, 1);
   return result;
 }
 
