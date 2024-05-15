@@ -12,13 +12,15 @@ function stylish(list) {
       } else {
         let value;
         let prevValue;
-        if (typeof element.value === 'object' || typeof element.prevValue === 'object') {
-          value = `{${JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '')}}`;
-          prevValue = `{${JSON.stringify(element.prevValue, null, countedSpaces).replace(/"/g, '').replace(/,/g, '')}}`;
+        value = typeof element.value === 'object' ? JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '') : element.value;
+        prevValue = typeof element.prevValue === 'object' ? JSON.stringify(element.prevValue, null, countedSpaces).replace(/"/g, '').replace(/,/g, '') : element.prevValue;
+        /*if (typeof element.value === 'object' || typeof element.prevValue === 'object') {
+          value = JSON.stringify(element.value, null, countedSpaces).replace(/"/g, '').replace(/,/g, '');
+          prevValue = JSON.stringify(element.prevValue, null, countedSpaces).replace(/"/g, '').replace(/,/g, '');
         } else {
           value = element.value;
           prevValue = element.prevValue;
-        }
+        }*/
         switch (element.type) {
           case 'added':
             res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${value}\n`;
