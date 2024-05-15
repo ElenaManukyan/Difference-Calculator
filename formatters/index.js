@@ -9,7 +9,6 @@ function chooseFormatters(difference, formatName = 'stylish') {
     case 'plain':
       return plain(difference);
     case 'stylish':
-      // return stylish(stylishObj(difference));
       return stylish(difference);
     default:
       throw new Error(`Format name ${formatName} doesn't exist`);
