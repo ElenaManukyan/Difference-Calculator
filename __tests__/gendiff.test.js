@@ -131,7 +131,7 @@ const answerNestedJSON = `{
         deep: {
             id: 45
         }
-  }
+    }
   + group3: {
         deep: {
             id: {
@@ -139,7 +139,7 @@ const answerNestedJSON = `{
             }
         }
         fee: 100500
-  }
+    }
 }`;
 
 const answerPlain = `Property 'common.follow' was added with value: false
@@ -164,7 +164,6 @@ test.each([
   expect(parsePaths(filePath1, filePath2)).toEqual(answerNestedJSON);
 });
 
-/*
 test('parsePaths(filepath1, filepath2)', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json')).toEqual(answerNestedJSON);
 });
@@ -176,4 +175,3 @@ test('Make difference nested structures JSON with format plain', () => {
 test('Make difference nested structures JSON with format json', () => {
   expect(parsePaths('./__fixtures__/file1_nested.json', './__fixtures__/file2_nested.json', 'json')).toEqual(answerJSON);
 });
-*/
