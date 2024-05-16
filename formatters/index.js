@@ -7,7 +7,7 @@ function chooseFormatters(difference, formatName = 'stylish') {
     case 'json':
       return JsonFormatter(difference);
     case 'plain':
-      return plain(difference).slice(0, -1);
+      return plain(difference);
     case 'stylish':
       return stylish(difference);
     default:
