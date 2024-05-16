@@ -11,7 +11,7 @@ function plain(diff, path = '', res = '') {
   let result = res;
   diff.forEach((element) => {
     const currentPath = `${path}${element.key}.`;
-    if (_.isArray(element.value)) {
+    if (element.type === 'nested') {
       result = plain(element.value, currentPath, result);
     } else if (element.type === 'added') {
       if (_.isPlainObject(element.value)) {
