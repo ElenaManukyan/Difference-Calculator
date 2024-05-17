@@ -1,8 +1,12 @@
 #!/usr/bin/env node
-import { program } from 'commander';
+
+import { Command } from 'commander';
 import parsePaths from '../src/parsers.js';
 
+const program = new Command();
+
 program
+  .name('gendiff')
   .version('0.0.1')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<filepath1> <filepath2>')
@@ -10,5 +14,6 @@ program
   .action((filepath1, filepath2, options) => {
     const format = options.format || 'stylish';
     console.log(parsePaths(filepath1, filepath2, format));
-  })
-  .parse();
+  });
+
+program.parse(process.argv);

@@ -5,6 +5,9 @@
   "scripts": {
     "test": "jest"
   },
+  "bin": {
+    "gendiff": "./bin/genDiffMain.js"
+  },
   "description": "Difference calculator",
   "main": "src/parsers.js",
   "author": "",

@@ -12,30 +12,37 @@ import parsePaths from '../src/parsers.js';
 2FlatJSONFiles.cast
 Creating difference between 2 flat .json files
 node bin/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1.json /home/elena/frontend-project-46/__fixtures__/file2.json
+gendiff /home/elena/frontend-project-46/__fixtures__/file1.json /home/elena/frontend-project-46/__fixtures__/file2.json
 
 2FlatYAMLFiles.cast
 Creating difference between 2 flat .yml files
 node bin/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1.yml /home/elena/frontend-project-46/__fixtures__/file2.yml
+gendiff /home/elena/frontend-project-46/__fixtures__/file1.yml /home/elena/frontend-project-46/__fixtures__/file2.yml
 
 2NestedJSONFiles.cast
 Creating difference between 2 nested .json files
 node bin/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
+gendiff /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
 
 2NestedYAMLFiles.cast
 Creating difference between 2 nested .yml files
 node bin/genDiffMain.js /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+gendiff /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
 
 2NestedJSONFilesFormatPlain.cast
 Creating difference between 2 nested .json files with '--format' parameter
 node bin/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
+gendiff --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.json /home/elena/frontend-project-46/__fixtures__/file2_nested.json
 
 2NestedYAMLFilesFormatPlain.cast
 Creating difference between 2 nested .yml files with '--format' parameter
 node bin/genDiffMain.js --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+gendiff --format plain /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
 
 2NestedYAMLFilesFormatJson.cast
 Creating difference between 2 nested .yml files with '--format' parameter = 'json'
 node bin/genDiffMain.js --format json  /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
+gendiff --format json  /home/elena/frontend-project-46/__fixtures__/file1_nested.yml /home/elena/frontend-project-46/__fixtures__/file2_nested.yml
 */
 
 /* const answerJSON = {
