@@ -34,9 +34,7 @@ function stylish(list) {
     });
     return result.join('\n');
   }
-  let result = '';
-  result += '{\n';
-  result += innerFunc(list, 1);
+  const result = `{\n${innerFunc(list, 1)}`;
   return `${result}\n}`;
 }
 
