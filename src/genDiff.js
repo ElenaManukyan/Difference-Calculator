@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-function makeObj(key, typeVal, valueVal, prevValueVal = 0) {
-  if (prevValueVal !== 0) {
+function makeObj(key, typeVal, valueVal, prevValueVal = '&') {
+  if (prevValueVal !== '&') {
     return {
       key,
       type: typeVal,
