@@ -13,15 +13,13 @@ function added(elValue, currentPath) {
 }
 
 function changed(elValue, prevValue, currentPath) {
-  let result;
   if (_.isPlainObject(elValue)) {
-    result = `Property '${currentPath.slice(0, -1)}' was updated. From ${prevValue} to [complex value]\n`;
-  } else if (_.isPlainObject(prevValue)) {
-    result = `Property '${currentPath.slice(0, -1)}' was updated. From [complex value] to ${stringify(elValue)}\n`;
-  } else {
-    result = `Property '${currentPath.slice(0, -1)}' was updated. From ${stringify(prevValue)} to ${stringify(elValue)}\n`;
+    return `Property '${currentPath.slice(0, -1)}' was updated. From ${prevValue} to [complex value]\n`;
   }
-  return result;
+  if (_.isPlainObject(prevValue)) {
+    return `Property '${currentPath.slice(0, -1)}' was updated. From [complex value] to ${stringify(elValue)}\n`;
+  }
+  return `Property '${currentPath.slice(0, -1)}' was updated. From ${stringify(prevValue)} to ${stringify(elValue)}\n`;
 }
 
 function additionalFunction(difference, pathDepth = '') {
