@@ -15,7 +15,6 @@ function stringifyValue(value, levelOfDepth) {
 
 function stylish(list) {
   function innerFunc(listOfDifference, levelOfDepth) {
-    // let res = '';
     const countedSpaces = ' '.repeat(4 * levelOfDepth);
     const result = listOfDifference.map((element) => {
       switch (element.type) {
@@ -40,38 +39,5 @@ function stylish(list) {
   result += innerFunc(list, 1);
   return `${result}\n}`;
 }
-    /*
-    listOfDifference.forEach((element) => {
-      switch (element.type) {
-        case 'nested':
-          res += `${countedSpaces}${element.key}: {\n`;
-          res += `${innerFunc(stringifyValue(element.value, levelOfDepth), levelOfDepth + 1)}`;
-          res += `${countedSpaces}}\n`;
-          break;
-        case 'added':
-          res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}\n`;
-          break;
-        case 'unchanged':
-          res += `${countedSpaces.slice(0, -2)}  ${element.key}: ${stringifyValue(element.value, levelOfDepth)}\n`;
-          break;
-        case 'removed':
-          res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${stringifyValue(element.value, levelOfDepth)}\n`;
-          break;
-        case 'changed':
-          res += `${countedSpaces.slice(0, -2)}- ${element.key}: ${stringifyValue(element.prevValue, levelOfDepth)}\n`;
-          res += `${countedSpaces.slice(0, -2)}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}\n`;
-          break;
-        default:
-          throw new Error(`Element type ${element.type} doesn't exist`);
-      }
-    });
-    return res;
-  }
-  let result = '';
-  result += '{\n';
-  result += innerFunc(list, 1);
-  return `${result.slice(0, -1)}\n}`;
-}
-*/
 
 export default stylish;
