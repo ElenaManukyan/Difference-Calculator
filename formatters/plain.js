@@ -11,13 +11,11 @@ function plain(diff, path = '') {
   function innerFunction(difference, pathDepth = '') {
     const result = difference.map((element) => {
       const currentPath = `${pathDepth}${element.key}.`;
-      let res;
       switch (element.type) {
         case 'nested':
           return innerFunction(element.value, currentPath);
         case 'added':
-          res = _.isPlainObject(element.value) ? `Property '${currentPath.slice(0, -1)}' was added with value: [complex value]\n` : `Property '${currentPath.slice(0, -1)}' was added with value: ${stringify(element.value)}\n`;
-          return res;
+          return _.isPlainObject(element.value) ? `Property '${currentPath.slice(0, -1)}' was added with value: [complex value]\n` : `Property '${currentPath.slice(0, -1)}' was added with value: ${stringify(element.value)}\n`;
         case 'removed':
           return `Property '${currentPath.slice(0, -1)}' was removed\n`;
         case 'changed':
