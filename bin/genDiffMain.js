@@ -10,9 +10,9 @@ program
   .version('0.0.1')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <format>', 'output format', 'stylish')
+  .option('-f, --format <format>', 'output format')
   .action((filepath1, filepath2, options) => {
-    const { format } = options;
+    const { format } = options || 'stylish';
     console.log(parsePaths(filepath1, filepath2, format));
   });
 
