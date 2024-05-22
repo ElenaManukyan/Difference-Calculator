@@ -10,7 +10,7 @@ function stringifyValue(value, levelOfDepth) {
     }).join('\n');
     return `{\n${entries}\n${closingIndent}}`;
   }
-  return value;
+  return `${value}`;
 }
 
 function stylish(list) {
@@ -20,7 +20,7 @@ function stylish(list) {
       const withoutTwoSpaces = countedSpaces.slice(0, -2);
       switch (element.type) {
         case 'nested':
-          return `${countedSpaces}${element.key}: {\n${innerFunc(stringifyValue(element.value, levelOfDepth), levelOfDepth + 1)}\n${countedSpaces}}`;
+          return `${countedSpaces}${element.key}: {\n${innerFunc(element.value, levelOfDepth + 1)}\n${countedSpaces}}`;
         case 'added':
           return `${withoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
         case 'unchanged':
@@ -35,8 +35,8 @@ function stylish(list) {
     });
     return result.join('\n');
   }
-  const result = `{\n${innerFunc(list, 1)}`;
-  return `${result}\n}`;
+  const result = innerFunc(list, 1);
+  return `{\n${result}\n}`;
 }
 
 export default stylish;

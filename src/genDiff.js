@@ -23,19 +23,18 @@ function genDiff(obj1, obj2) {
     const unionKeys = _.union(keys1, keys2);
     return _.sortBy(unionKeys.map((key) => {
       if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
-        return makeObj(key, 'nested', _.sortBy(genDiff(obj1[key], obj2[key]), 'key'));
-      } if (obj1[key] === obj2[key]) {
-        return makeObj(key, 'unchanged', obj1[key]);
-      } if (
-        obj1[key] !== obj2[key]
-        && keys1.includes(key)
-        && keys2.includes(key)
-      ) {
-        return makeObj(key, 'changed', obj2[key], obj1[key]);
-      } if (!keys1.includes(key) && keys2.includes(key)) {
+        return makeObj(key, 'nested', genDiff(obj1[key], obj2[key]));
+      }
+      if (!keys1.includes(key) && keys2.includes(key)) {
         return makeObj(key, 'added', obj2[key]);
       }
-      return makeObj(key, 'removed', obj1[key]);
+      if (keys1.includes(key) && !keys2.includes(key)) {
+        return makeObj(key, 'removed', obj1[key]);
+      }
+      if (obj1[key] === obj2[key]) {
+        return makeObj(key, 'unchanged', obj1[key]);
+      }
+      return makeObj(key, 'changed', obj2[key], obj1[key]);
     }), 'key');
   }
   return [];

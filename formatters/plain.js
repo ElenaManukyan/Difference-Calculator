@@ -7,33 +7,24 @@ function stringify(value) {
   return String(value);
 }
 
-function added(elValue, currentPath) {
-  const result = _.isPlainObject(elValue) ? `Property '${currentPath.slice(0, -1)}' was added with value: [complex value]\n` : `Property '${currentPath.slice(0, -1)}' was added with value: ${stringify(elValue)}\n`;
-  return result;
-}
-
-function changed(elValue, prevValue, currentPath) {
-  if (_.isPlainObject(elValue)) {
-    return `Property '${currentPath.slice(0, -1)}' was updated. From ${prevValue} to [complex value]\n`;
-  }
-  if (_.isPlainObject(prevValue)) {
-    return `Property '${currentPath.slice(0, -1)}' was updated. From [complex value] to ${stringify(elValue)}\n`;
-  }
-  return `Property '${currentPath.slice(0, -1)}' was updated. From ${stringify(prevValue)} to ${stringify(elValue)}\n`;
-}
-
-function additionalFunction(difference, pathDepth = '') {
+function addingStrings(difference, pathDepth = '') {
   const result = difference.map((element) => {
     const currentPath = `${pathDepth}${element.key}.`;
     switch (element.type) {
       case 'nested':
-        return additionalFunction(element.value, currentPath);
+        return addingStrings(element.value, currentPath);
       case 'added':
-        return added(element.value, currentPath);
+        return _.isPlainObject(element.value) ? `Property '${currentPath.slice(0, -1)}' was added with value: [complex value]\n` : `Property '${currentPath.slice(0, -1)}' was added with value: ${stringify(element.value)}\n`;
       case 'removed':
         return `Property '${currentPath.slice(0, -1)}' was removed\n`;
       case 'changed':
-        return changed(element.value, element.prevValue, currentPath);
+        if (_.isPlainObject(element.value)) {
+          return `Property '${currentPath.slice(0, -1)}' was updated. From ${element.prevValue} to [complex value]\n`;
+        }
+        if (_.isPlainObject(element.prevValue)) {
+          return `Property '${currentPath.slice(0, -1)}' was updated. From [complex value] to ${stringify(element.value)}\n`;
+        }
+        return `Property '${currentPath.slice(0, -1)}' was updated. From ${stringify(element.prevValue)} to ${stringify(element.value)}\n`;
       case 'unchanged':
         return '';
       default:
@@ -44,7 +35,7 @@ function additionalFunction(difference, pathDepth = '') {
 }
 
 function plain(diff, path = '') {
-  const result = additionalFunction(diff, path);
+  const result = addingStrings(diff, path);
   return result.slice(0, -1);
 }
 

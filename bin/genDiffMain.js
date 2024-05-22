@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import parsePaths from '../src/parsers.js';
+import parsePaths from '../src/parsers/index.js';
 
 const program = new Command();
 
@@ -12,7 +12,7 @@ program
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format <format>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => {
-    const format = options.format || 'stylish';
+    const { format } = options;
     console.log(parsePaths(filepath1, filepath2, format));
   });
 
