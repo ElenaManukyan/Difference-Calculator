@@ -1,7 +1,7 @@
 import path from 'path';
 import process from 'node:process';
-import chooseFormatters from '../../formatters/index.js';
-import genDiff from '../genDiff.js';
+import chooseFormatters from '../formatters/index.js';
+import genDiff from './genDiff.js';
 import parsers from './parsers.js';
 
 function parsePaths(filepath1, filepath2, formatter = 'stylish') {

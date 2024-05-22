@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import parsePaths from '../src/parsers/index.js';
+import parsePaths from '../src/index.js';
 
 const answerNestedJSON = `{
     common: {
