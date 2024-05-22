@@ -8,8 +8,6 @@ function parsers(filePath, format) {
       fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       return fileContent;
     case '.yml':
-      fileContent = yaml.load(fs.readFileSync(filePath, 'utf8'));
-      return fileContent;
     case '.yaml':
       fileContent = yaml.load(fs.readFileSync(filePath, 'utf8'));
       return fileContent;

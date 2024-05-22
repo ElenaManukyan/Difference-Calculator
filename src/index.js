@@ -6,6 +6,7 @@ import parsers from './parsers.js';
 
 function parsePaths(filepath1, filepath2, formatter = 'stylish') {
   const fileFormat1 = path.extname(String(filepath1));
+  console.log(`fileFormat1= ${fileFormat1}`);
   const pathResolved1 = path.resolve(process.cwd(), String(filepath1));
   const fileContent1 = parsers(pathResolved1, fileFormat1);
   const fileFormat2 = path.extname(String(filepath2));
