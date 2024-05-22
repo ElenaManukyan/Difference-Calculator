@@ -1,14 +1,15 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
+import path from 'path';
 
-function parsers(filePath, format) {
+function parsers(filePath) {
+  const format = path.extname(filePath);
   let fileContent;
   switch (format) {
     case '.json':
       fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       return fileContent;
     case '.yml':
-    case '.yaml':
       fileContent = yaml.load(fs.readFileSync(filePath, 'utf8'));
       return fileContent;
     default:
