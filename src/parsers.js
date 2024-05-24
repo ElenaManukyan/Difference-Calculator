@@ -4,14 +4,11 @@ import path from 'path';
 
 function parsers(filePath) {
   const format = path.extname(filePath);
-  let fileContent;
   switch (format) {
     case '.json':
-      fileContent = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-      return fileContent;
+      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
     case '.yml':
-      fileContent = yaml.load(fs.readFileSync(filePath, 'utf8'));
-      return fileContent;
+      return yaml.load(fs.readFileSync(filePath, 'utf8'));
     default:
       throw new Error(`Element format ${format} doesn't exist`);
   }
