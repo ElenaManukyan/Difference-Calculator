@@ -9,7 +9,7 @@
     "gendiff": "./bin/genDiffMain.js"
   },
   "description": "Difference calculator",
-  "main": "src/parsers.js",
+  "main": "src/index.js",
   "author": "",
   "license": "ISC",
   "devDependencies": {
