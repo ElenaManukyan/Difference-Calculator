@@ -17,18 +17,18 @@ function stylish(list) {
   function innerFunc(listOfDifference, levelOfDepth) {
     const countedSpaces = ' '.repeat(4 * levelOfDepth);
     const result = listOfDifference.map((element) => {
-      const withoutTwoSpaces = countedSpaces.slice(0, -2);
+      const indentationWithoutTwoSpaces = countedSpaces.slice(0, -2);
       switch (element.type) {
         case 'nested':
           return `${countedSpaces}${element.key}: {\n${innerFunc(element.value, levelOfDepth + 1)}\n${countedSpaces}}`;
         case 'added':
-          return `${withoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${indentationWithoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
         case 'unchanged':
-          return `${withoutTwoSpaces}  ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${indentationWithoutTwoSpaces}  ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
         case 'removed':
-          return `${withoutTwoSpaces}- ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${indentationWithoutTwoSpaces}- ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
         case 'changed':
-          return `${withoutTwoSpaces}- ${element.key}: ${stringifyValue(element.prevValue, levelOfDepth)}\n${withoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${indentationWithoutTwoSpaces}- ${element.key}: ${stringifyValue(element.prevValue, levelOfDepth)}\n${indentationWithoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
         default:
           throw new Error(`Element type ${element.type} doesn't exist`);
       }
