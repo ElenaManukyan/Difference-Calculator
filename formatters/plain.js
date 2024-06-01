@@ -7,12 +7,12 @@ function stringify(value) {
   return String(value);
 }
 
-function addingStrings(difference, pathDepth = '') {
+function plain(difference, pathDepth = '') {
   const result = difference.map((element) => {
     const fullPath = pathDepth ? `${pathDepth}.${element.key}` : element.key;
     switch (element.type) {
       case 'nested':
-        return addingStrings(element.value, fullPath);
+        return plain(element.value, fullPath);
       case 'added':
         return _.isPlainObject(element.value) ? `Property '${fullPath}' was added with value: [complex value]\n` : `Property '${fullPath}' was added with value: ${stringify(element.value)}\n`;
       case 'removed':
@@ -32,11 +32,6 @@ function addingStrings(difference, pathDepth = '') {
     }
   });
   return result.join('');
-}
-
-function plain(diff, path = '') {
-  const result = addingStrings(diff, path);
-  return result.trim();
 }
 
 export default plain;
