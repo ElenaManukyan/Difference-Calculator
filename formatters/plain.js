@@ -9,22 +9,22 @@ function stringify(value) {
 
 function addingStrings(difference, pathDepth = '') {
   const result = difference.map((element) => {
-    const currentPath = `${pathDepth}${element.key}.`;
+    const fullPath = pathDepth ? `${pathDepth}.${element.key}` : element.key;
     switch (element.type) {
       case 'nested':
-        return addingStrings(element.value, currentPath);
+        return addingStrings(element.value, fullPath);
       case 'added':
-        return _.isPlainObject(element.value) ? `Property '${currentPath.slice(0, -1)}' was added with value: [complex value]\n` : `Property '${currentPath.slice(0, -1)}' was added with value: ${stringify(element.value)}\n`;
+        return _.isPlainObject(element.value) ? `Property '${fullPath}' was added with value: [complex value]\n` : `Property '${fullPath}' was added with value: ${stringify(element.value)}\n`;
       case 'removed':
-        return `Property '${currentPath.slice(0, -1)}' was removed\n`;
+        return `Property '${fullPath}' was removed\n`;
       case 'changed':
         if (_.isPlainObject(element.value)) {
-          return `Property '${currentPath.slice(0, -1)}' was updated. From ${element.prevValue} to [complex value]\n`;
+          return `Property '${fullPath}' was updated. From ${element.prevValue} to [complex value]\n`;
         }
         if (_.isPlainObject(element.prevValue)) {
-          return `Property '${currentPath.slice(0, -1)}' was updated. From [complex value] to ${stringify(element.value)}\n`;
+          return `Property '${fullPath}' was updated. From [complex value] to ${stringify(element.value)}\n`;
         }
-        return `Property '${currentPath.slice(0, -1)}' was updated. From ${stringify(element.prevValue)} to ${stringify(element.value)}\n`;
+        return `Property '${fullPath}' was updated. From ${stringify(element.prevValue)} to ${stringify(element.value)}\n`;
       case 'unchanged':
         return '';
       default:
@@ -36,7 +36,7 @@ function addingStrings(difference, pathDepth = '') {
 
 function plain(diff, path = '') {
   const result = addingStrings(diff, path);
-  return result.slice(0, -1);
+  return result.trim();
 }
 
 export default plain;
