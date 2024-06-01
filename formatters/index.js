@@ -2,7 +2,7 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 import JsonFormatter from './JSON.js';
 
-function chooseFormatters(difference, formatName = 'stylish') {
+function format(difference, formatName = 'stylish') {
   switch (formatName) {
     case 'json':
       return JsonFormatter(difference);
@@ -15,4 +15,4 @@ function chooseFormatters(difference, formatName = 'stylish') {
   }
 }
 
-export default chooseFormatters;
+export default format;

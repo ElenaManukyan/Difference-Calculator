@@ -2,7 +2,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
 
-function parsers(filePath) {
+function parse(filePath) {
   const format = path.extname(filePath);
   switch (format) {
     case '.json':
@@ -14,4 +14,4 @@ function parsers(filePath) {
   }
 }
 
-export default parsers;
+export default parse;
