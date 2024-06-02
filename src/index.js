@@ -1,6 +1,6 @@
 import path from 'path';
 import process from 'node:process';
-import format from '../formatters/index.js';
+import format from './formatters/index.js';
 import genDiff from './genDiff.js';
 import parse from './parsers.js';
 
