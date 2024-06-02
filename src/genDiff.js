@@ -40,7 +40,6 @@ function genDiff(obj1, obj2) {
       prevValue: obj1[key],
     };
   }), 'key');
-  return [];
 }
 
 export default genDiff;
