@@ -2,7 +2,7 @@
 [![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)
 <a href="https://codeclimate.com/github/ElenaManukyan/frontend-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/c6b14fa220654c350868/maintainability" /></a>
 ![example workflow](https://github.com/ElenaManukyan/frontend-project-46/actions/workflows/gendiff.yml/badge.svg)
-<a href="https://codeclimate.com/github/ElenaManukyan/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/567e889cf3a5d076d28d/test_coverage" /></a>
+<a href="https://codeclimate.com/github/ElenaManukyan/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/c6b14fa220654c350868/test_coverage" /></a>
 # Description:
 This console utility can calculate difference between 2 structures of data.
 ## Opportunities of the utility:
