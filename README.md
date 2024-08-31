@@ -9,10 +9,8 @@ This console utility can compare and calculate differences between two YAML or J
 * It supports different input formats, like yaml and json.
 * You can generate a report in plain text, a "stylish" format, or as json.
 ## Installation:
-```
-git clone git@github.com:ElenaManukyan/Difference-Calculator.git
-make install
-```
+1. `git clone git@github.com:ElenaManukyan/Difference-Calculator.git`
+2. `make install`
 ## How to run the tests:
 `make test`
 ## How to run the Eslint:
