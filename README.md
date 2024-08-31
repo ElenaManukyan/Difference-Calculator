@@ -10,6 +10,10 @@ This console utility can compare and calculate differences between two YAML or J
 * You can generate a report in plain text, a "stylish" format, or as json.
 ## Installation:
 `make install`
+## How to run the tests:
+`make test`
+## How to run the Eslint:
+`make lint`
 ## How to use:
 ```
 gendiff -h
