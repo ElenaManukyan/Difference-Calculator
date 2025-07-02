@@ -1,6 +1,5 @@
 # Difference Calculator (gendiff)   
 
-### Tests and code analysis:
 [![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c6b14fa220654c350868/maintainability)](https://codeclimate.com/github/ElenaManukyan/frontend-project-46/maintainability)
 ![example workflow](https://github.com/ElenaManukyan/frontend-project-46/actions/workflows/gendiff.yml/badge.svg)
