@@ -1,4 +1,5 @@
-# Difference Calculator (gendiff)
+# Difference Calculator (gendiff)  
+**A CLI tool to compare files (JSON/YAML) and show differences in stylish, plain, or JSON format.**  
 
 ### Tests and code analysis:
 [![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)
