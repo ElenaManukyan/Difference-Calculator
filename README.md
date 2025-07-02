@@ -20,47 +20,33 @@ A CLI tool for comparing files (JSON/YAML) and displaying differences in multipl
 
 ## Installation
 
-1. Make sure you have Node.js version 14 or higher installed.
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/ElenaManukyan/Difference-Calculator.git
-   ```
-3. Navigate to the project directory:
-   ```bash
-   cd Difference-Calculator
-   ```
-4. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+# Clone repository
+git clone https://github.com/ElenaManukyan/Difference-Calculator.git
+cd Difference-Calculator
+
+# Install dependencies
+npm install
+
+# Install globally (optional)
+npm install -g .
+```
 
 ## Development and Testing
-### Linting:
-The project uses ESLint with Airbnb's coding standards. To lint the code, run:
 ```bash
+# Run linter
 npx eslint .
-```
-or:
-```bash
 make lint
-```
-### Testing:
-Tests are written using the Jest framework. To run all tests, execute:
-```bash
+
+# Run tests
 npm test
-```
-or:
-```bash
 make test
-```
-### Formatting:
-To ensure consistent code style, use Prettier:
-```bash
+
+# Run formatter
 npx prettier --write .
-```
+```  
 
 ## Usage
-The gendiff command compares two files and outputs their differences.
 ```
 gendiff -h
 Usage: gendiff [options] <filepath1> <filepath2>
@@ -71,9 +57,26 @@ Options:
   -V, --version          output the version number
   -f, --format <format>  output format (default: "stylish")
   -h, --help             display help for command
+```  
+## Examples
+### Compare flat files
+```
+# JSON files
+gendiff file1.json file2.json
+
+# YAML files
+gendiff file1.yml file2.yml
+```  
+### Compare nested structures
+```
+# With plain format
+gendiff --format plain nested1.json nested2.json
+
+# Get JSON output
+gendiff --format json nested1.yml nested2.yml
 ```
 
-## Usage examples:
+## Demo:
 ### Creating difference between 2 flat .json files:
 <a href="https://asciinema.org/a/wFWF5AqXjojXDuEojlMvfCECk" target="_blank"><img src="https://asciinema.org/a/wFWF5AqXjojXDuEojlMvfCECk.svg" /></a>
 ### Creating difference between 2 flat .yml files:
