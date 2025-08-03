@@ -1,4 +1,4 @@
-🔍 # Difference Calculator (gendiff)   
+# 🔍 Difference Calculator (gendiff)   
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Actions Status](https://github.com/SierraMoiseevna/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SierraMoiseevna/frontend-project-46/actions)
@@ -8,7 +8,7 @@
 
 A CLI tool for comparing files (JSON/YAML) and displaying differences in multiple formats.
 
-🌟 ## Features
+## 🌟 Features
 
 - Supports JSON and YAML input formats
 - Three output formats:
@@ -18,7 +18,7 @@ A CLI tool for comparing files (JSON/YAML) and displaying differences in multipl
 
 ---
 
-⚙️ ## Installation
+## ⚙️ Installation
 
 ```bash
 # Clone repository
@@ -32,7 +32,7 @@ npm install
 npm install -g .
 ```
 
-🛠 ## Development and Testing
+## 🛠 Development and Testing
 ```bash
 # Run linter
 npx eslint .
@@ -46,7 +46,7 @@ make test
 npx prettier --write .
 ```  
 
-🚀 ## Usage
+## 🚀 Usage
 ```
 gendiff -h
 Usage: gendiff [options] <filepath1> <filepath2>
@@ -58,7 +58,7 @@ Options:
   -f, --format <format>  output format (default: "stylish")
   -h, --help             display help for command
 ```  
-📋 ## Examples
+## 📋 Examples
 ### Compare flat files
 ```
 # JSON files
@@ -76,7 +76,7 @@ gendiff --format plain nested1.json nested2.json
 gendiff --format json nested1.yml nested2.yml
 ```
 
-🎥 ## Demo:
+## 🎥 Demo:
 ### Creating difference between 2 flat .json files:
 <a href="https://asciinema.org/a/wFWF5AqXjojXDuEojlMvfCECk" target="_blank"><img src="https://asciinema.org/a/wFWF5AqXjojXDuEojlMvfCECk.svg" /></a>
 ### Creating difference between 2 flat .yml files:
