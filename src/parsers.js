@@ -14,4 +14,4 @@ function parse(filePath) {
   }
 }
 
-export default parse;
+export default parse
