@@ -1,5 +1,5 @@
 lint:
-	npx eslint --config eslint.config.js .
+	npx eslint .
 
 test:
 	npm test
