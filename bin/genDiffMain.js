@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import parsePaths from '../src/index.js';
+import { Command } from 'commander'
+import parsePaths from '../src/index.js'
 
-const program = new Command();
+const program = new Command()
 
 program
   .name('gendiff')
@@ -12,8 +12,8 @@ program
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format <format>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => {
-    const { format } = options;
-    console.log(parsePaths(filepath1, filepath2, format));
-  });
+    const { format } = options
+    console.log(parsePaths(filepath1, filepath2, format))
+  })
 
-program.parse(process.argv);
+program.parse(process.argv)

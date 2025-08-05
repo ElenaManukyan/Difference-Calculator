@@ -1,31 +1,31 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 function isObject(value) {
   if (_.isPlainObject(value)) {
-    return '[complex value]';
+    return '[complex value]'
   }
-  return (typeof value === 'string') ? `'${value}'` : value;
+  return (typeof value === 'string') ? `'${value}'` : value
 }
 
 function plain(difference, pathDepth = '') {
   const result = difference.map((element) => {
-    const fullPath = pathDepth ? `${pathDepth}.${element.key}` : element.key;
+    const fullPath = pathDepth ? `${pathDepth}.${element.key}` : element.key
     switch (element.type) {
       case 'nested':
-        return plain(element.value, fullPath);
+        return plain(element.value, fullPath)
       case 'added':
-        return `Property '${fullPath}' was added with value: ${isObject(element.value)}\n`;
+        return `Property '${fullPath}' was added with value: ${isObject(element.value)}\n`
       case 'removed':
-        return `Property '${fullPath}' was removed\n`;
+        return `Property '${fullPath}' was removed\n`
       case 'changed':
-        return `Property '${fullPath}' was updated. From ${isObject(element.prevValue)} to ${isObject(element.value)}\n`;
+        return `Property '${fullPath}' was updated. From ${isObject(element.prevValue)} to ${isObject(element.value)}\n`
       case 'unchanged':
-        return '';
+        return ''
       default:
-        throw new Error(`Element type ${element.type} doesn't exist`);
+        throw new Error(`Element type ${element.type} doesn't exist`)
     }
-  });
-  return result.join('');
+  })
+  return result.join('')
 }
 
-export default plain;
+export default plain
